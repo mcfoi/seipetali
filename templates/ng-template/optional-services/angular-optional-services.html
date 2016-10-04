@@ -1,0 +1,128 @@
+{% load icanhaz_tags %}
+{% load i18n %}
+
+    {% angular %}
+
+{#<h1>Anular optional services plugin</h1>#}
+
+{#[[ initActiveService ]]#}
+<input type="checkbox" hidden="hidden" name="servizi_opzionali" ng-repeat='service in active_services' value="[[ service.id ]]" checked='checked'>
+
+<div class="row" id='service-sortable-container'>
+    <div class="col-md-4">
+        <h3>Servizi Attivi</h3>
+        <ul class="list-group custom-sortable-list" as-sortable="dragControlServicesListeners" data-columnindex="0" ng-model="active_services" style="min-height: 200px;">
+
+            <li class="list-group-item" as-sortable-item ng-repeat='service in active_services'>
+                <span class="glyphicon glyphicon-info-sign pull-right" aria-hidden="true" ng-click='infoVisible = !infoVisible'></span>
+
+                <div as-sortable-item-handle>
+                    <h5>[[ service.id ]] [[ service.nome ]]</h5>
+                </div>
+                <div ng-if='infoVisible'>
+                    <p><em>[[ service.descrizione ]]</em></p>
+                    prezzo: [[ service.costo ]]/[[ service.fattore_tempo ]] giorni
+                </div>
+            <li class="list-group-item" ng-show="!active_services.length" style="width: 70%;position: absolute;text-align: center;font-style: italic;left: 13%; border: none;background-color: transparent;">
+                Non ci sono servizi attivi
+            <br>
+            <br>
+                Trascina in questa area i servizi selezionabili per questo
+                alloggio
+            </li>
+        </ul>
+{#        <pre style="font-size:8px">[[ active_services | json]]</pre>#}
+    </div>
+
+    <div class="col-md-4">
+        <h3>Servizi disponibili</h3>
+        <ul class="list-group custom-sortable-list" as-sortable="dragControlServicesListeners" data-columnindex="1" ng-model="valid_optional_services" style="min-height: 200px;">
+            <li class="list-group-item" as-sortable-item ng-repeat='service in valid_optional_services' class="" ng-init="infoVisible=false">
+                <span class="glyphicon glyphicon-info-sign pull-right" aria-hidden="true" ng-click='infoVisible = !infoVisible'></span>
+
+                <div as-sortable-item-handle>
+                    <h5>[[ service.id ]] [[ service.nome ]]</h5>
+                </div>
+                <div ng-if='infoVisible'>
+                    <p><em>[[ service.descrizione ]]</em></p>
+                    prezzo: [[ service.costo ]]/[[ service.fattore_tempo ]] giorni
+                </div>
+            </li>
+            <li class="list-group-item" ng-show="!valid_optional_services.length">Nessun altro servizio disponibile</li>
+        </ul>
+{#        <pre style="font-size:8px">[[ valid_optional_services | json]]</pre>#}
+
+    </div>
+    <div class="col-md-4">
+        <div ng-if="!formVisible" ng-click="$parent.formVisible=true" class="btn btn-block btn-default">Nuovo servizio
+            opzionale
+        </div>
+
+        <div class="panel" ng-if="formVisible">
+
+            <form>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Nome servizio</label>
+                    <input class="form-control" name="nome" type="text" ng-model="service_form.nome" required>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1">Descrizione</label>
+                    <input class="form-control" name="descrizione" type="text" ng-model="service_form.descrizione" required>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-7">
+                        <div class="form-group">
+                            <label for="exampleInputFile">Costo</label>
+                            <div class="input-group">
+                                <input class="form-control" name="costo" type="number" ng-model="service_form.costo" integer required>
+                                 <div class="input-group-addon">€</div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-xs-5">
+                        <div class="form-group">
+                            <label for="exampleInputFile">&nbsp;</label>
+                            <select  class="form-control" ng-options="opt.value as opt.name for opt in time_factor_values" ng-model="service_form.fattore_tempo" required>
+
+                            </select>
+
+                        </div>
+
+
+                    </div>
+                </div>
+
+
+
+
+                <div class="form-group">
+                    <label for="exampleInputFile">Regime iva</label>
+                    <select class="form-control" name="iva" ng-model="service_form.iva" required ng-options="iva.nome for iva in valid_iva">
+
+                        <option value="">-- seleziona Iva --</option>
+                    </select>
+                </div>
+
+                <button class="btn " ng-click='addOptionalServices($event)'> Add</button>
+                <button class="btn" ng-click='cancelForm($event)'> Cancel</button>
+
+{#                <pre>#}
+{#                    [[ service_form |json ]]#}
+{#                </pre>#}
+            </form>
+
+
+        </div>
+
+
+
+
+    </div>
+
+</div>
+
+
+{% endangular %}
+{#</script>#}

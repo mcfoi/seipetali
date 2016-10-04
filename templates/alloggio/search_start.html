@@ -1,0 +1,48 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags i18n %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+
+
+{% block content %}
+    <div class="row">
+
+    {% if  SEARCH_ENABLED %}
+
+        <div class="col-md-12  text-center">
+                    <h1>{% trans 'Cerca il tuo alloggio' %}</h1>
+        </div>
+
+        <div class="col-md-6 col-md-offset-3 jumbotron">
+
+
+                <form action="" method="post" class="uniForm row">
+                    {% csrf_token %}
+
+                    {% crispy searchForm %}
+
+{#                    <div >#}
+{##}
+{#                        <input type="text" class="form-control" ng-model='checkin' is-open="opened" ng-focus="opened=true" datepicker-popup />#}
+{#                          <span class="input-group-btn">#}
+{#                            <button type="button" class="btn btn-default" ng-click="opened=true;$event.stopPropagation()"><i class="glyphicon glyphicon-calendar"></i></button>#}
+{#                          </span>#}
+{#                    </div>#}
+
+                    <button class="btn btn-primary" type="submit"  value="Search" >{% trans 'Cerca'%}</button>
+                </form>
+        </div>
+    {% else %}
+        <div class="col-md-12  text-center " style="margin-top: 100px">
+            <h1>{% trans 'Al momento nessun alloggio disponibile' %}</h1>
+        </div>
+    {% endif %}
+    </div>
+
+
+
+
+{% endblock %}

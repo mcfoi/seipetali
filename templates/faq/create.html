@@ -1,0 +1,21 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+
+
+{% block content %}
+    <h1> {% if form.instance.id %} Update {% else %}Create {% endif %} Faq</h1>
+
+    <form action="" method="post" class="uniForm row">
+        {% csrf_token %}
+
+        {{form | crispy}}
+
+
+        <input class="btn btn-success" type="submit" value="{% if form.instance.id %} Update {% else %}Create {% endif %} " />
+    </form>
+
+
+{% endblock %}

@@ -1,0 +1,169 @@
+{% load i18n account menu_tags cms_tags %}
+
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+  <div class="container">
+
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a style="margin-left: -400px;padding-left: 415px;" class="navbar-brand" href="{% url 'home' %}" >
+          <img alt="I Sei Petali Logo" src="{{ STATIC_URL }}images/LOGO/6 petali marchio.png" >
+
+      </a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+
+          <li>
+              <a href="{% url 'seipetali_card' %}">{% trans 'i Sei Petali Card' %}</a>
+          </li>
+
+
+
+
+{#      Voci di menu 'Cerchi alloggio' e 'inserisci il tuo alloggio' disponibile solo per la versione italiana#}
+
+        {% if LANGUAGE_CODE == 'it' %}
+          <li><a href="{% url 'alloggio_create' %}">{% blocktrans %}Vuoi affittare il <br> tuo appartamento?{% endblocktrans %}</a></li>
+          <li><a href="{% url 'alloggio_search_map' %}">{% blocktrans %}Cerchi un alloggio<br>a Milano?{% endblocktrans %}</a></li>
+{#          <li><a href="{% page_url 'vuoi-aprire-un-bb' %}">{% blocktrans %}Vuoi aprire un<br>B&B?{% endblocktrans %}</a></li>#}
+          <li class='evidence'><a href="{% page_url 'news' %}">{% blocktrans %}News{% endblocktrans %}</a></li>
+        {% endif %}
+
+{#      CALL CENTER DISABILITATO#}
+{#          <li><a href="tel:800888800">{% blocktrans %}Call Center<br>800888800{% endblocktrans %}</a></li>#}
+
+      {% if not user.is_authenticated %}
+          <li><a class="textRed upper " href="{% url 'account_signup' %}">{% trans "registrati" %}</a></li>
+      {% endif %}
+{#        <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>#}
+{#        <li><a href="#">Link</a></li>#}
+
+
+{#          FAQ#}
+{#        <li class="dropdown">#}
+{#          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Faq <span class="caret"></span></a>#}
+{#          <ul class="dropdown-menu" role="menu">#}
+{#            <li><a href="{% url 'faq_list' %}">Lista</a></li>#}
+{#            <li><a href="{% url 'faq_create' %}">nuova faq</a></li>#}
+{#          </ul>#}
+{#        </li>#}
+
+{#        <li class="dropdown">#}
+{#          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Alloggio <span class="caret"></span></a>#}
+{#          <ul class="dropdown-menu" role="menu">#}
+{#            <li><a href="{% url 'alloggio_list' %}">List</a></li>#}
+{#            <li><a href="{% url 'alloggio_create' %}">Create</a></li>#}
+{#            <li><a href="#">Something else here</a></li>#}
+{#            <li class="divider"></li>#}
+{#            <li><a href="#">Separated link</a></li>#}
+{#            <li class="divider"></li>#}
+{#            <li><a href="#">One more separated link</a></li>#}
+{#          </ul>#}
+{#        </li>#}
+
+
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+      {% if user.is_superuser %}
+        <li><a href="{% url 'admin:index' %}">Admin</a></li>
+      {% endif %}
+{#        <li class="dropdown">#}
+{#          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>#}
+{#          <ul class="dropdown-menu" role="menu">#}
+{#            <li><a href="#">Action</a></li>#}
+{#            <li><a href="#">Another action</a></li>#}
+{#            <li><a href="#">Something else here</a></li>#}
+{#            <li class="divider"></li>#}
+{#            <li><a href="#">Separated link</a></li>#}
+{#          </ul>#}
+{#        </li>#}
+
+{#            <li class="dropdown">#}
+{#                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Language <span class="caret"></span></a>#}
+{#                <ul class="dropdown-menu" role="menu">#}
+{#                    {% if request.toolbar %}#}
+{#                        {% language_chooser "menu/language_chooser.html" %}#}
+{#                    {% else %}#}
+{#                         <form id='languageForm' action="{% url 'set_language' %}" method="post">#}
+{#                            {% csrf_token %}#}
+{#                            <input name="next" type="hidden" value="{{ current_path }}"/>#}
+{#                            <input id='language_code' name="language" type="hidden" value="{{ LANGUAGE_CODE }}"/>#}
+{#                            {% for lang in LANGUAGES %}#}
+{#                                <li value="{{ lang.0 }}" class="{% ifequal lang.0 LANGUAGE_CODE %} selected {% endifequal %}"> {{ lang.0 }} {% ifequal lang.0 LANGUAGE_CODE %} current {% endifequal %}</li>#}
+{#                            {% endfor %}#}
+{#                        </form>#}
+{##}
+{#                    {% endif %}#}
+{##}
+{##}
+{##}
+{##}
+{#                </ul>#}
+{#            </li>#}
+
+            {#                    <select class='no-selectbox' arrow-label='{% trans "cambia" %}' id='languageSelect' name="language" class="maxWidth">#}
+            {#                        {% for lang in LANGUAGES %}#}
+            {#                            <option data-img-src="/static/AI_EXPORTS/immagini/blank.png" data-img-class="flag-lg flag-{{ lang.0 }}" value="{{ lang.0 }}" {% ifequal lang.0 LANGUAGE_CODE %} selected='selected' {% endifequal %}> {{ lang.1 }}</option>#}
+            {#                        {% endfor %}#}
+            {#                    </select>#}
+
+
+          <li>
+              <a  href="https://www.facebook.com/ISeiPetali-1470642379909450"><img width='25' alt="Pagina Facebook" src="{{ STATIC_URL }}images/social/facebook-logo-png-transparent-background-50x50.png"></a>
+          </li>
+          <li>
+              <a href="mailto:?Subject=Sito%20Iseipetali&body=Link%20al%20sito:%20http://www.iseipetali.it">
+                  <span style="font-size: 1.5em" class="glyphicon glyphicon-envelope" aria-hidden="true"></span>
+              </a>
+          </li>
+
+           {% if user.is_authenticated %}
+
+                    <li class="dropdown ">
+                        <a class="dropdown-toggle header-thumbnail textBlack" data-toggle="dropdown" href="#" >
+
+{#                                    <img src="{% avatar_url user 45 %}" alt="" class="">#}
+
+                            {% trans "Benvenuto" %}  <span class="textRed"> {% user_display user %} </span>
+                        </a>
+                        <ul class="dropdown-menu text-right maxWidth">
+{#                                    <li><a href="{% url 'profile' %}"> {% trans "Il mio Profilo" %} </a></li>#}
+{#                                    <li><a href="{% url 'settings' %}"> <i class="icon-cog icon-white"></i> {% trans "Preferenze" %} </a></li>#}
+
+{#                            <li><a href="#"> {% trans "Pannello Locatore" %} </a></li>#}
+{#                            <li><a href="#"> {% trans "Pannello Locatario" %} </a></li>#}
+                             {% if user.is_staff %}
+                            <li><a href="{% url 'dashboard_call_center' %}"> {% trans "Pannello Call Center" %} </a></li>
+                             {% endif %}
+                            <li class="divider"></li>
+                            <li><a href="{% url 'account_logout' %}"> <i class="icon-off icon-white"></i> {% trans "Esci" %} </a></li>
+                        </ul>
+                    </li>
+
+            {% else %}
+
+                    <li><a class="upper " href="{% url 'account_login' %}">{% trans "accedi" %}</a></li>
+{#                    <li><div class='header-separator'></div></li>#}
+{#                    <li><a class="textRed upper " href="{% url 'account_signup' %}">{% trans "registrati" %}</a></li>#}
+
+            {% endif %}
+
+      </ul>
+
+
+
+
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>

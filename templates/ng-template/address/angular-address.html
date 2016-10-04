@@ -1,0 +1,104 @@
+{% load icanhaz_tags %}
+{% load i18n %}
+
+    {% angular %}
+        <div>
+            <input hidden="hidden" name='country_name' type="text" ng-model='form.country.name' value="[[ form.country.name ]]" >
+            <input hidden="hidden" name='country_code' type="text" ng-model='form.country.code' value="[[ form.country.code ]]" >
+
+            <input hidden="hidden" name='state_name' type="text" ng-model='form.state.name' value="[[ form.state.name ]]" >
+            <input hidden="hidden" name='state_code' type="text" ng-model='form.state.code' value="[[ form.state.code ]]" >
+
+            <input hidden="hidden" name='locality_name' type="text" ng-model='form.locality.name' value="[[ form.locality.name ]]" >
+            <input hidden="hidden" name='locality_postal_code' type="text" ng-model='form.locality.postal_code' value="[[ form.locality.postal_code ]]" >
+
+            <input hidden="hidden" name='address_street_address' type="text" ng-model='form.address.street_address' value="[[ form.address.street_address ]]" >
+            <input hidden="hidden" name='address_street_number' type="text" ng-model='form.address.street_number' value="[[ form.address.street_number ]]" >
+            <input hidden="hidden" name='address_formatted' type="text" ng-model='form.address.formatted' value="[[ form.address.formatted ]]" >
+            <input hidden="hidden" name='address_latitude' type="text" ng-model='form.address.latitude' value="[[ form.address.latitude ]]" >
+            <input hidden="hidden" name='address_longitude' type="text" ng-model='form.address.longitude' value="[[ form.address.longitude ]]" >
+
+
+
+            <div class="form-group">
+                <label  for="Address">Indirizzo</label>
+
+
+                <div class="input-group input-group-lg">
+
+                   <input  id='userInputAddress' class="form-control" ng-model='address.address' ng-click="" ng-blur='checkAddress($event)' placeholder="Address"
+                           typeahead="address for address in getLocation($viewValue)" typeahead-loading="loadingLocations"  autocomplete="off" >
+
+                    <i style="position: absolute;
+left: 1px;
+z-index: 100;
+top: 18px;" ng-show="loadingLocations" class="glyphicon glyphicon-refresh"></i>
+                   </input>
+
+                  <span class="input-group-addon">
+                      <span class=" " ng-disabled="! address.address" ng-click='checkAddress($event)'>Verify</span>
+                  </span>
+
+                </div>
+              </div>
+
+
+
+
+
+
+            <div class="row" ng-if='mapVisible'>
+                <div class="col-md-8">
+                    <ui-gmap-google-map center='map.center' zoom='map.zoom'  >
+                        <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">
+                        </ui-gmap-marker>
+                    </ui-gmap-google-map>
+
+
+                </div>
+                <div class="col-md-4">
+                    <div class="panel">
+                        <address>
+                          <strong>[[ form.address.formatted ]]</strong><br>
+
+                        </address>
+
+                    </div>
+
+                    <!--
+                    <p>
+                        Lat:
+                        <input name='map_center_lat' ng-model='map.center.latitude' value="[[ map.center.latitude ]]">
+                    </p>
+                    <p>
+                        Long:
+                        <input name='map_center_long' ng-model='map.center.longitude' value="[[ map.center.longitude ]]" >
+                    </p>
+                    <p>
+                        Zoom:
+                        <input name='map_center_zoom' type="number" ng-model='map.zoom' value="[[ map.zoom ]]" >
+                    </p>
+                     <div ng-cloak>
+                        <ul>
+                            <li>coords update ctr: [[coordsUpdates]]</li>
+                            <li>dynamic move ctr: [[dynamicMoveCtr]]</li>
+                        </ul>
+                    </div>
+                    -->
+
+                </div>
+            </div>
+
+
+
+
+
+
+{##}
+{#            <hr>#}
+{#            <pre>[[ address | json]]</pre>#}
+{#            <pre>[[ marker | json]]</pre>#}
+{#            <pre>[[ form|json ]]</pre>#}
+        </div>
+    {% endangular %}
+{#</script>#}

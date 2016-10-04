@@ -1,0 +1,118 @@
+{% extends 'cms/2col-3-9.html' %}
+
+{% load crispy_forms_tags menu_tags cms_tags %}
+{% load static %}
+
+{% block title %}
+    I Sei Petali Card
+{% endblock %}
+
+
+
+
+{#{% endblock %}#}
+
+{% block main_content %}
+    <h1 >Per poter usufruire dei servizi della Cooperativa è necessario acquistare “I Sei Petali Card”.</h1 >
+
+
+
+
+
+
+
+
+
+    <div class="panel-group mTop20" id="accordion" role="tablist" aria-multiselectable="true" >
+        <div class="panel panel-default" >
+            <div class="panel-heading" role="tab" id="headingOne" >
+                <h4 class="panel-title" >
+{#                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" >#}
+                        Scegli una delle nostre card
+{#                    </a >#}
+                </h4 >
+            </div >
+            <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne" >
+                <div class="panel-body" >
+
+                    <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" >
+                        <div class="row" >
+                            <div class="col-md-12" >
+
+                                <div class="form-group" >
+                                    <label >Valore Card</label >
+                                    <select name="hosted_button_id" class="form-control" >
+                                        <option value="D3L6MH858XGUS" >Card 10 Euro</option >
+                                        <option value="XRGWQ9FHAH6B8" >Card 20 Euro</option >
+                                        <option value="DRCE9P79RVZZC" >Card 30 Euro</option >
+                                        <option value="QKAH7S8GA5HTC" >Card 40 Euro</option >
+                                        <option value="F5X42NVQAK7YL" >Card 50 Euro</option >
+                                    </select >
+                                </div >
+
+
+                                <input type="hidden" name="cmd" value="_s-xclick" >
+{#                                <input type="hidden" name="hosted_button_id" value="D3L6MH858XGUS" >#}
+                                <label for="basic-url" >Codice Fiscale</label >
+                                <div class="input-group" >
+                                    <span class="input-group-addon" id="basic-addon3" >CF</span >
+                                    <input type="hidden" name="on0" value="Codice fiscale" >
+                                    <input type="text" name="os0" maxlength="200" class="form-control" id="basic-url" aria-describedby="basic-addon3" >
+                                </div >
+
+                            </div >
+
+                            <div class="col-md-8 " >
+                                <p class="mTop20" >
+
+                                    Il costo è comprensivo di Iva .
+                                    <br >
+                                    Verificare i termini di uso della Card prima di procedere con l’acquisto cliccando
+                                    al seguente link
+                                    {#        <a target="_blank" href="{% page_url 'terms' %}"></a>#}
+                                    <a onclick="window.open('{% page_url 'terms' %}','terms','resizable,width=200'); return false" href='' >
+                                        "Termini e condizioni" </a >
+                                </p >
+                            </div >
+
+                            <div class="col-md-4 text-center" >
+                                <div class="mTop20" >
+
+                                    <input type="image" src="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal Ë il metodo rapido e sicuro per pagare e farsi pagare online." >
+                                    <img alt="" border="0" src="https://www.paypalobjects.com/it_IT/i/scr/pixel.gif" width="1" height="1" >
+                                </div >
+
+                            </div >
+                        </div >
+
+
+                    </form >
+
+
+                </div >
+            </div >
+        </div >
+
+
+    </div >
+
+
+    {##}
+    {#    <p class="mTop20">#}
+    {##}
+    {#    Il costo è di 10 Euro Iva inclusa.#}
+    {#        <br>#}
+    {#Verificare i termini di uso della Card prima di procedere con l’acquisto cliccando al seguente link#}
+    {#        <a target="_blank" href="{% page_url 'terms' %}"></a>#}
+    {#        <a onclick="window.open('{% page_url 'terms' %}','terms','resizable,width=200'); return false" href=''> "Termini e condizioni"  </a>#}
+    {#    </p>#}
+    {##}
+    {#    Paypal Button#}
+    {#    <form class='mTop20 text-center' action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">#}
+    {#        <input type="hidden" name="cmd" value="_s-xclick">#}
+    {#        <input type="hidden" name="hosted_button_id" value="D3L6MH858XGUS">#}
+    {#        <input type="image" src="https://www.paypalobjects.com/it_IT/IT/i/btn/btn_buynow_LG.gif" border="0" name="submit" alt="PayPal è il metodo rapido e sicuro per pagare e farsi pagare online.">#}
+    {#        <img alt="" border="0" src="https://www.paypalobjects.com/it_IT/i/scr/pixel.gif" width="1" height="1">#}
+    {#    </form>#}
+
+{% endblock main_content %}

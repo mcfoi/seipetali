@@ -1,0 +1,17 @@
+<div id="accounts-dash">
+  <div id="message">
+    {% if user.is_authenticated %}
+    <p>Hi {{ user.username }}!</p>
+    {% else %}
+    <p>Hello there!</p>
+  {% endif %}
+  </div>
+  <ul>
+    {% if user.is_authenticated %}
+    <li><a href="/accounts/logout">Logout</a></li>
+    {% else %}
+    <li><a href="/accounts/login">Login</a></li>
+    <li><a href="/accounts/register">Register</a></li>
+    {% endif %}
+  </ul>
+</div>

@@ -1,0 +1,295 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+{% load icanhaz_tags %}
+
+{% block title %}
+    Dashboar Call center
+{% endblock %}
+{% block head_css %}
+    {{ block.super }}
+
+     <link rel="stylesheet" href="{{ STATIC_URL }}bower_components/fullcalendar/dist/fullcalendar.css"/>
+
+{% endblock %}
+
+
+{% block content %}
+    {% angular %}
+
+        <h1>Pannello di controllo Call center</h1>
+        <hr>
+
+        <div ng-controller="dashboardCallcenterCtrl" ng-cloak>
+            <div class="row" style="min-height: 297px">
+                <div class="col-md-6 clearfix">
+                    <div class="inner-addon left-addon right-addon">
+                        <input type="search" ng-model='search_query' ng-model-options="{ debounce: 500 }"  class="form-control" placeholder="Cerca utente" >
+                        <i class="glyphicon glyphicon-search"></i>
+                        <i ng-show='search_query' class="glyphicon glyphicon-remove-circle right" ng-click='search_query=null'></i>
+                    </div>
+                    <hr>
+
+                    {#                [[users]]#}
+                    <table class="table table-hover" >
+                        <tr ng-repeat='user in users' ng-click='selectUser(user)' ng-class="{'info': user._selected  }">
+                            <td>[[user.id]]</td>
+                            <td>[[user.username]]</td>
+                            <td>[[user.first_name]]</td>
+                            <td>[[user.last_name]]</td>
+                            {#                      <td>[[user.email]]</td>#}
+                            {#                      <td>[[user.phone_number]]</td>#}
+                        </tr>
+                    </table>
+
+                    <button class="btn btn-default btn-xs pull-right" ng-show='users.meta.next' ng-click='usersShowNext()'> next</button>
+                    <button class="btn btn-default btn-xs pull-left" ng-show='users.meta.previous' ng-click='usersShowPrevious()'> prev</button>
+
+                </div>
+
+                <div class="col-md-6 well" ng-show='selected_user'>
+                    <h4>Informazioni utente</h4>
+                    <dl class="dl-horizontal">
+{#                        <dt>id</dt>#}
+{#                        <dd>[[selected_user.id]]</dd>#}
+
+                        <dt ng-if="selected_user.first_name">Nome</dt>
+                        <dd ng-if="selected_user.first_name">[[selected_user.first_name]]</dd>
+
+                        <dt ng-if="selected_user.last_name">Cognome</dt>
+                        <dd ng-if="selected_user.last_name">[[selected_user.last_name]]</dd>
+
+                        <dt ng-if="selected_user.email">Email</dt>
+                        <dd ng-if="selected_user.email"><a href="mailto:[[selected_user.email]]">[[selected_user.email]]</a></dd>
+
+                        <dt ng-if="selected_user.phone_number">Numero di telefono</dt>
+                        <dd ng-if="selected_user.phone_number"><a href="tel:[[selected_user.phone_number]]">[[selected_user.phone_number]]</a></dd>
+
+                        <dt ng-if="selected_user.username">Username</dt>
+                        <dd ng-if="selected_user.username">[[selected_user.username]]</dd>
+
+                        <dt ng-if="selected_user.address || selected_user.postal_code || selected_user.citta">Indirizzzo</dt>
+                        <dd ng-if="selected_user.address || selected_user.postal_code || selected_user.citta">[[selected_user.address]] [[selected_user.postal_code]] [[selected_user.citta]] </dd>
+                    </dl>
+
+                    <div ng-show='selected_user.alloggi.length' class="panel">
+
+                        <h4>Alloggi inseriti dall' utente:</h4>
+                        <table class="table table-striped table-hover">
+                            <tr ng-repeat='alloggio in selected_user.alloggi'   ng-class="{'danger': !alloggio.active   }">
+                                <td>[[alloggio.id]]</td>
+                                <td>[[alloggio.descrizione_breve]]</td>
+{#                                <td>[[alloggio.active]]</td>#}
+                                <td>
+                                    <a href='' ng-click="toggleAlloggioActive(alloggio)" >
+                                        <span ng-if='!alloggio.active'>Attiva</span>
+                                        <span ng-if='alloggio.active'>Disattiva</span>
+                                    </a> 
+					|
+                                    <a href='/alloggio/detail/[[alloggio.id]]' >Vedi</a>
+					|
+                                    <a href='/alloggio/edit/[[alloggio.id]]/' > Modifica</a> |
+
+                                    <button class="btn btn-xs btn-default" ng-class="{'btn-primary': alloggio._selected  }" ng-click='selectAlloggio(alloggio)' href=""  >
+                                        <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                                    </button>
+
+                                </td>
+
+                            </tr>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="row" ng-if='selected_alloggio' >
+                <ng-alloggio-calendar alloggio-id='[[ selected_alloggio.id ]]' ></ng-alloggio-calendar>
+            </div>
+
+
+            {#        <script type="text/ng-template" id="myModalContent.html">#}
+            {#            <div class="modal-header">#}
+            {#                <h3 class="modal-title">I'm a modal!</h3>#}
+            {#            </div>#}
+            {#            <div class="modal-body">#}
+            {#                <ul>#}
+            {#                    <li ng-repeat="item in items">#}
+            {#                        <a ng-click="selected.item = item">{{ item }}</a>#}
+            {#                    </li>#}
+            {#                </ul>#}
+            {#                Selected: <b>{{ selected.item }}</b>#}
+            {#            </div>#}
+            {#            <div class="modal-footer">#}
+            {#                <button class="btn btn-primary" ng-click="ok()">OK</button>#}
+            {#                <button class="btn btn-warning" ng-click="cancel()">Cancel</button>#}
+            {#            </div>#}
+            {#        </script>#}
+
+            <div class="row">
+                <div class="col-md-12">
+                    <h1> Prenotazioni </h1>
+
+                    <span ng-show='selected_user'>
+
+                        <label>Filter by  user [[selected_user.username]]:
+                            <input type="checkbox" ng-model="filter_by_user">
+                    </span>
+
+
+                    <table class="table table-striped table-hover" >
+                        <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Data prenotazione</th>
+                            <th>Locatario</th>
+                            <th>check-in</th>
+                            <th>check-out</th>
+                            <th>status</th>
+                            <th>pagamenti</th>
+                            <th>action</th>
+
+                        </tr>
+                        </thead>
+                        <tr ng-repeat='reservation in reservations'>
+                            <td>
+                                [[reservation.id]]
+                            </td>
+                            <td>
+                                [[reservation.created | date:'dd-MM-yyyy HH:mm']]
+                            </td>
+                             <td>
+                                [[reservation.user.first_name]] [[reservation.user.last_name]] ([[reservation.user.username]])
+                            </td>
+                            <td>
+                                [[reservation.event.start | date:'dd-MM-yyyy ']]
+                            </td>
+                            <td>
+                                [[reservation.event.end | date:'dd-MM-yyyy ']]
+                            </td>
+                            <td>
+                                [[reservation.status]]
+                            </td>
+                            <td>
+                                <em ng-if='!reservation.payments.length'> non ci sono pagamenti</em>
+                                {#                          <span ng-if='reservation.payments.length'> [[reservation.payments]]#}
+                                <ul class="list-unstyled" ng-if='reservation.payments.length'>
+                                    <li ng-repeat='payment in reservation.payments' ng-mousemove='mouseHover=true' ng-mouseleave='mouseHover=false' style="position: relative">
+
+                                        <button ng-mouseleave='mouseHover=false' style="position: absolute;
+                                                    right: 0px ;
+                                                    background: red;
+                                                    opacity: 0.7;
+                                                    border: none;
+                                                    height: 100%;
+                                                    width: 30px;
+                                                    color: white;
+                                                    border-radius: 0px;"
+                                                {#                                            tooltip='Cancella pagamento'#}
+                                                ng-show='mouseHover' data-ng-click="deletePayment(payment,reservation)" type="button" class="btn btn-default btn-xs" data-dismiss="alert" aria-label="Close">
+                                            <span class="glyphicon glyphicon-remove" aria-hidden="true"></button>
+                                        [[payment.payment_date | date:'dd-MM-yyyy ']] <b>[[payment.amount]] €</b>
+
+                                        <em class="pull-right" style="margin-right: 40px    ">([[ payment.method]])</em>
+
+                                    </li>
+                                </ul>
+                                </span>
+
+                            </td>
+                            <td>
+                                <div ng-if='!reservation._createNewPayment'>
+
+                                    <a class="btn btn-default btn-xs" tooltip-append-to-body='true' tooltip='Vedi Dettaglio' ng-href="/reservation/detail/[[reservation.id]]"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span>
+                                    </a>
+                                    <button class="btn btn-default btn-xs" tooltip-append-to-body='true' tooltip='Aggiungi pagamento' ng-click="reservation._createNewPayment=true ">
+                                        <span class="glyphicon glyphicon-euro" aria-hidden="true"></span></button>
+                                    <button class="btn btn-default btn-xs" tooltip-append-to-body='true' tooltip='Cancella prenotazione' ng-click="deleteReservation(reservation)">
+                                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                                </div>
+
+                                <div ng-if='reservation._createNewPayment'>
+                                    <form style="width: 200px" name="paymentform">
+                                        <div class="form-group ">
+                                            <label for="exampleInputName2">Payment date</label>
+                                            <input required type="text" class="form-control" ng-init='paymentDate.open=false' ng-click="paymentDate.open=true" ng-model='newPayment.payment_date' is-open="paymentDate.open" datepicker-popup='[[datepicker.format]]'/>
+                                            {#                                      <input required type="date" class="form-control"ng-model='newPayment.payment_date'  />#}
+                                        </div>
+
+                                        <div class="form-group ">
+                                            <label for="exampleInputName2">Payment method</label>
+                                            <select class="form-control " ng-model='newPayment.method' name="method" ng-options="n for n in ['bonifico','vaglia'] " required>
+                                                <option></option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group " ng-class="{'has-error': paymentform.amount.$error.float  }">
+                                            <label>Amount (in euro)</label>
+
+                                            <div class="input-group ">
+                                                <div class="input-group-addon">€</div>
+                                                <input ng-pattern="/^\-?\d+((\.|\,)\d+)?$/" type="text" class="form-control " ng-model='newPayment.amount' name="amount" placeholder="Amount" required placeholder="Amount" smart-float>
+                                                {#                                      <div class="input-group-addon">.00</div>#}
+                                            </div>
+                                      <span class="help-block" ng-show="paymentform.amount.$error.float">
+                                        Invalid Amount!
+                                    </span>
+
+                                        </div>
+                                        <button type="submit" ng-click="registerPayment(reservation,newPayment)" ng-disabled="paymentform.$invalid" class="btn btn-primary">
+                                            Transfer cash
+                                        </button>
+                                        <button ng-click='reservation._createNewPayment=false' class="btn btn-danger">
+                                            annulla
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+
+
+                    </table>
+
+                    <em ng-show='!reservations.length'> Non ci sono prenotazioni <strong ng-show='filter_by_user && selected_user' > per l'utente [[selected_user.first_name]] [[selected_user.last_name]] ([[selected_user.username]])</strong>  </em>
+
+                </div>
+            </div>
+
+{#            <div class="row">#}
+{#                <div class="col-md-12">#}
+{#                    <h1> Prenotazioni pagate</h1>#}
+{##}
+{##}
+{#                </div>#}
+{#            </div>#}
+
+        </div>
+    {% endangular %}
+
+{% endblock %}
+
+
+
+
+{% block compress_footer_js %}
+    {{ block.super }}
+
+
+    {#    ANGULAR FULLCALENDAR #}
+{#        <script type="text/javascript" src="bower_components/jquery/jquery.js"></script>#}
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/jquery-ui/ui/jquery-ui.js"></script>
+{#        <script type="text/javascript" src="bower_components/angular/angular.js"></script>#}
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-ui-calendar/src/calendar.js"></script>
+{#        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/fullcalendar/fullcalendar.js"></script>#}
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/fullcalendar/dist/fullcalendar.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/fullcalendar/dist/gcal.js"></script>
+        <script src="{{ STATIC_URL }}js/angular-app/directive/angular-alloggio-calendar.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="{{ STATIC_URL }}bower_components/angular-dialog-service/dist/dialogs.min.js" type="text/javascript" charset="utf-8"></script>
+    {#    <script src="{{ STATIC_URL }}bower_components/angular-dialog-service/example/js/ui-bootstrap-tpls-0.11.2.min.js" type="text/javascript" charset="utf-8"></script>#}
+    <script src="{{ STATIC_URL }}js/angular-app/controller/dashboard-callcenter-controller.js" type="text/javascript" charset="utf-8"></script>
+
+{% endblock %}
+
+{% block angular_app_js %}
+    <script src="{{ STATIC_URL }}js/angular-app/app_dashboard.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}bower_components/angular-sanitize/angular-sanitize.min.js" type="text/javascript" charset="utf-8"></script>
+{% endblock %}

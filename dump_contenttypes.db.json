@@ -1,0 +1,632 @@
+[
+{
+  "fields": {
+    "model": "logentry",
+    "name": "log entry",
+    "app_label": "admin"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 1
+},
+{
+  "fields": {
+    "model": "permission",
+    "name": "permission",
+    "app_label": "auth"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 2
+},
+{
+  "fields": {
+    "model": "group",
+    "name": "group",
+    "app_label": "auth"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 3
+},
+{
+  "fields": {
+    "model": "contenttype",
+    "name": "content type",
+    "app_label": "contenttypes"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 4
+},
+{
+  "fields": {
+    "model": "session",
+    "name": "session",
+    "app_label": "sessions"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 5
+},
+{
+  "fields": {
+    "model": "user",
+    "name": "user",
+    "app_label": "user"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 6
+},
+{
+  "fields": {
+    "model": "serviziobase",
+    "name": "servizio base",
+    "app_label": "alloggio"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 7
+},
+{
+  "fields": {
+    "model": "servizioopzionale",
+    "name": "servizio Opzionale",
+    "app_label": "alloggio"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 8
+},
+{
+  "fields": {
+    "model": "letto",
+    "name": "letto",
+    "app_label": "alloggio"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 9
+},
+{
+  "fields": {
+    "model": "alloggio",
+    "name": "alloggio",
+    "app_label": "alloggio"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 10
+},
+{
+  "fields": {
+    "model": "lettorelation",
+    "name": "letto relation",
+    "app_label": "alloggio"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 11
+},
+{
+  "fields": {
+    "model": "parametri",
+    "name": "parametri",
+    "app_label": "seipetali_configuration"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 12
+},
+{
+  "fields": {
+    "model": "iva",
+    "name": "iva",
+    "app_label": "seipetali_configuration"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 13
+},
+{
+  "fields": {
+    "model": "country",
+    "name": "country",
+    "app_label": "address"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 14
+},
+{
+  "fields": {
+    "model": "state",
+    "name": "state",
+    "app_label": "address"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 15
+},
+{
+  "fields": {
+    "model": "locality",
+    "name": "locality",
+    "app_label": "address"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 16
+},
+{
+  "fields": {
+    "model": "address",
+    "name": "address",
+    "app_label": "address"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 17
+},
+{
+  "fields": {
+    "model": "faq",
+    "name": "faq",
+    "app_label": "faq"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 18
+},
+{
+  "fields": {
+    "model": "site",
+    "name": "site",
+    "app_label": "sites"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 19
+},
+{
+  "fields": {
+    "model": "emailaddress",
+    "name": "email address",
+    "app_label": "account"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 20
+},
+{
+  "fields": {
+    "model": "emailconfirmation",
+    "name": "email confirmation",
+    "app_label": "account"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 21
+},
+{
+  "fields": {
+    "model": "gallery",
+    "name": "gallery",
+    "app_label": "photologue"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 22
+},
+{
+  "fields": {
+    "model": "photo",
+    "name": "photo",
+    "app_label": "photologue"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 23
+},
+{
+  "fields": {
+    "model": "photoeffect",
+    "name": "photo effect",
+    "app_label": "photologue"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 24
+},
+{
+  "fields": {
+    "model": "watermark",
+    "name": "watermark",
+    "app_label": "photologue"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 25
+},
+{
+  "fields": {
+    "model": "photosize",
+    "name": "photo size",
+    "app_label": "photologue"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 26
+},
+{
+  "fields": {
+    "model": "apiaccess",
+    "name": "api access",
+    "app_label": "tastypie"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 27
+},
+{
+  "fields": {
+    "model": "apikey",
+    "name": "api key",
+    "app_label": "tastypie"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 28
+},
+{
+  "fields": {
+    "model": "calendar",
+    "name": "calendar",
+    "app_label": "schedule"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 29
+},
+{
+  "fields": {
+    "model": "calendarrelation",
+    "name": "calendar relation",
+    "app_label": "schedule"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 30
+},
+{
+  "fields": {
+    "model": "rule",
+    "name": "rule",
+    "app_label": "schedule"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 31
+},
+{
+  "fields": {
+    "model": "event",
+    "name": "event",
+    "app_label": "schedule"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 32
+},
+{
+  "fields": {
+    "model": "eventrelation",
+    "name": "event relation",
+    "app_label": "schedule"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 33
+},
+{
+  "fields": {
+    "model": "occurrence",
+    "name": "occurrence",
+    "app_label": "schedule"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 34
+},
+{
+  "fields": {
+    "model": "usersettings",
+    "name": "user setting",
+    "app_label": "cms"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 35
+},
+{
+  "fields": {
+    "model": "placeholder",
+    "name": "placeholder",
+    "app_label": "cms"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 36
+},
+{
+  "fields": {
+    "model": "cmsplugin",
+    "name": "cms plugin",
+    "app_label": "cms"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 37
+},
+{
+  "fields": {
+    "model": "page",
+    "name": "page",
+    "app_label": "cms"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 38
+},
+{
+  "fields": {
+    "model": "globalpagepermission",
+    "name": "Page global permission",
+    "app_label": "cms"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 39
+},
+{
+  "fields": {
+    "model": "pagepermission",
+    "name": "Page permission",
+    "app_label": "cms"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 40
+},
+{
+  "fields": {
+    "model": "pageuser",
+    "name": "User (page)",
+    "app_label": "cms"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 41
+},
+{
+  "fields": {
+    "model": "pageusergroup",
+    "name": "User group (page)",
+    "app_label": "cms"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 42
+},
+{
+  "fields": {
+    "model": "title",
+    "name": "title",
+    "app_label": "cms"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 43
+},
+{
+  "fields": {
+    "model": "placeholderreference",
+    "name": "placeholder reference",
+    "app_label": "cms"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 44
+},
+{
+  "fields": {
+    "model": "staticplaceholder",
+    "name": "static placeholder",
+    "app_label": "cms"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 45
+},
+{
+  "fields": {
+    "model": "aliaspluginmodel",
+    "name": "alias plugin model",
+    "app_label": "cms"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 46
+},
+{
+  "fields": {
+    "model": "cachekey",
+    "name": "cache key",
+    "app_label": "menus"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 47
+},
+{
+  "fields": {
+    "model": "revision",
+    "name": "revision",
+    "app_label": "reversion"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 48
+},
+{
+  "fields": {
+    "model": "version",
+    "name": "version",
+    "app_label": "reversion"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 49
+},
+{
+  "fields": {
+    "model": "source",
+    "name": "source",
+    "app_label": "easy_thumbnails"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 50
+},
+{
+  "fields": {
+    "model": "thumbnail",
+    "name": "thumbnail",
+    "app_label": "easy_thumbnails"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 51
+},
+{
+  "fields": {
+    "model": "thumbnaildimensions",
+    "name": "thumbnail dimensions",
+    "app_label": "easy_thumbnails"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 52
+},
+{
+  "fields": {
+    "model": "folder",
+    "name": "Folder",
+    "app_label": "filer"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 53
+},
+{
+  "fields": {
+    "model": "folderpermission",
+    "name": "folder permission",
+    "app_label": "filer"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 54
+},
+{
+  "fields": {
+    "model": "file",
+    "name": "file",
+    "app_label": "filer"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 55
+},
+{
+  "fields": {
+    "model": "clipboard",
+    "name": "clipboard",
+    "app_label": "filer"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 56
+},
+{
+  "fields": {
+    "model": "clipboarditem",
+    "name": "clipboard item",
+    "app_label": "filer"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 57
+},
+{
+  "fields": {
+    "model": "image",
+    "name": "image",
+    "app_label": "filer"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 58
+},
+{
+  "fields": {
+    "model": "text",
+    "name": "text",
+    "app_label": "djangocms_text_ckeditor"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 59
+},
+{
+  "fields": {
+    "model": "picture",
+    "name": "picture",
+    "app_label": "djangocms_picture"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 60
+},
+{
+  "fields": {
+    "model": "filerfile",
+    "name": "filer file",
+    "app_label": "cmsplugin_filer_file"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 61
+},
+{
+  "fields": {
+    "model": "filerfolder",
+    "name": "filer folder",
+    "app_label": "cmsplugin_filer_folder"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 62
+},
+{
+  "fields": {
+    "model": "filerlinkplugin",
+    "name": "filer link plugin",
+    "app_label": "cmsplugin_filer_link"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 63
+},
+{
+  "fields": {
+    "model": "filerimage",
+    "name": "filer image",
+    "app_label": "cmsplugin_filer_image"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 64
+},
+{
+  "fields": {
+    "model": "thumbnailoption",
+    "name": "thumbnail option",
+    "app_label": "cmsplugin_filer_image"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 65
+},
+{
+  "fields": {
+    "model": "filerteaser",
+    "name": "filer teaser",
+    "app_label": "cmsplugin_filer_teaser"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 66
+},
+{
+  "fields": {
+    "model": "filervideo",
+    "name": "filer video",
+    "app_label": "cmsplugin_filer_video"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 67
+},
+{
+  "fields": {
+    "model": "reservation",
+    "name": "reservation",
+    "app_label": "reservation"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 68
+},
+{
+  "fields": {
+    "model": "payment",
+    "name": "payment",
+    "app_label": "reservation"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 69
+},
+{
+  "fields": {
+    "model": "reservationservice",
+    "name": "reservation service",
+    "app_label": "reservation"
+  },
+  "model": "contenttypes.contenttype",
+  "pk": 70
+}
+]

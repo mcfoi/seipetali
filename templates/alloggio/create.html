@@ -1,0 +1,225 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags %}
+
+
+
+
+
+
+{% block ng_templates %}
+{#    {% include 'ng-template/address/angular-address.html' %}#}
+{#    {% include 'ng-template/gallery/angular-gallery.html' %}#}
+{#    {% include 'ng-template/optional-services/angular-optional-services.html' %}#}
+{#    {% include 'ng-template/alloggio-calendar/angular-alloggio-calendar.html' %}#}
+{% endblock %}
+
+
+
+
+{% block head_css %}
+    {{ block.super }}
+    <style>
+        .angular-google-map-container { height: 400px; }
+    </style>
+    <link rel="stylesheet" href="{{ STATIC_URL }}bower_components/ng-sortable/dist/ng-sortable.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/ng-sortable.css" type="text/css" charset="utf-8">
+    <style>
+        .as-sortable-drag .col-md-3 {
+            width: 100%;
+        }
+
+        .as-sortable-hidden {
+            display: none;
+            width: 0px;
+            height: 0px;
+        }
+        .as-sortable-placeholder{
+            background-color: rgba(255, 0, 0, 0.30);
+            z-index: 100;
+        }
+
+        .min-thumb-h {
+            min-height: 253px
+        }
+    </style>
+
+     <link rel="stylesheet" href="{{ STATIC_URL }}bower_components/fullcalendar/dist/fullcalendar.css"/>
+
+{% endblock %}
+
+
+
+{#{% block compress_header_js %}#}
+{#        <script src="{{ STATIC_URL }}bower_components/lodash/dist/lodash.js" type="text/javascript" charset="utf-8"></script>#}
+{#        <script src="{{ STATIC_URL }}bower_components/angular-google-maps/dist/angular-google-maps.js" type="text/javascript" charset="utf-8"></script>#}
+{#        <script>#}
+{#            angular.module('seipetali-app', ['uiGmapgoogle-maps']);#}
+{#        </script>#}
+{#{% endblock %}#}
+
+
+
+
+{% block content %}
+
+
+    <div class="row">
+
+
+        <h1> Inserisci i tuoi riferimenti e quelli del tuo alloggio e ti richiameremo per attivare una collaborazione</h1>
+
+
+
+
+    <form action="" method="post" class="uniForm panel ">
+        {% csrf_token %}
+
+        {% if request.user.is_superuser %}
+            <div class="checkbox">
+            <label>
+
+              {{ form.active }} Annucio Attivo
+            </label>
+          </div>
+
+        {% endif %}
+
+
+    <div class="well-default well">
+
+
+    {% crispy form form.helperTop %}
+
+    </div>
+
+
+
+    <div class="well-default well">
+        <ngaddress address_latitude='{{ addressForm.address_latitude.value }}' address_longitude='{{ addressForm.address_longitude.value }}' address_formatted='{{ addressForm.address_formatted.value }}'>
+        </ngaddress>
+
+
+
+        <hr>
+
+    {#        <nggallery gallery-api-url='/api/v1/gallerys/1' photo-api-url></nggallery>#}
+
+        <nggallery {% if form.gallery.value %} gallery-api-url='/api/v1/gallerys/{{ form.gallery.value }}' {% endif %} ></nggallery>
+
+
+    </div>
+
+
+
+
+     {% crispy form form.helper %}
+
+
+
+     <ng-optional-services  active_services="[{% for id in form.servizi_opzionali.value %}{{ id}}{% if not forloop.last %},{% endif %}{% endfor %}]" ></ng-optional-services>
+
+
+
+
+
+
+
+       {% if object and object.calendar %}
+            <ng-alloggio-calendar alloggio-id='{{ object.id }}' ></ng-alloggio-calendar>
+
+{#           <div ng-controller='alloggioCalendarCtrl'>#}
+{#            {% verbatim %}#}
+{#               <h1>Angular Alloggio Calendar controller</h1>#}
+{#                <div class="row">#}
+{#                    <div class="col-md-4">#}
+{#                        <ul>#}
+{##}
+{#                            <li ng-repeat="e in events" class="ng-scope">#}
+{#                                <div class="alert  ng-binding" ng-class="{'alert-success': e.hover , 'alert-info':!e.hover}" >#}
+{#                                    <a class="close" ng-click="remove($index)">remove<i class="icon-remove"></i></a>#}
+{#                                    <b> <input ng-model="e.title" class="ng-pristine ng-valid" ></b>#}
+{#                                    {{ e.start }} -- {{ e.end }}#}
+{##}
+{#                                </div>#}
+{#                            </li>#}
+{#                        </ul>#}
+{#                        <pre>{{ calendar |json}}</pre>#}
+{#                         <pre>{{ events |json}}</pre>#}
+{#                    </div>#}
+{#                    <div class="col-md-8">#}
+{#                         <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="alloggioCalendar"></div>#}
+{#                    </div>#}
+{#                </div>#}
+{#                {% endverbatim %}#}
+{##}
+{#           </div>#}
+        {% endif %}
+
+
+
+
+
+        <input class='btn btn-lg btn-success btn-block' type="submit" value="{% if form.instance.id %} Aggiorna  annuncio {% else %}Salva il tuo annuncio {% endif %} " />
+    </form>
+     </div>
+{#    or#}
+{#    {% crispy form %}#}
+
+
+{% endblock %}
+
+
+{% block footer_js_pre %}
+    <script src="https://maps.googleapis.com/maps/api/js?" type="text/javascript" charset="utf-8"></script>
+{% endblock %}
+
+{% block footer_js %}
+
+{% endblock %}
+
+{% block compress_footer_js %}
+    {{ block.super }}
+{#                ANGULAR GOOGLE MAPS#}
+
+
+    <script src="{{ STATIC_URL }}bower_components/lodash/dist/lodash.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}bower_components/angular-google-maps/dist/angular-google-maps.js" type="text/javascript" charset="utf-8"></script>
+
+
+{#    ANGULAR FILE UPLOAD#}
+    <script src="{{ STATIC_URL }}bower_components/es5-shim/es5-sham.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}bower_components/es5-shim/es5-shim.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}bower_components/angular-file-upload/angular-file-upload.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+
+{#    ANGULAR SORTABLE#}
+    <script type="text/javascript" src="{{ STATIC_URL }}bower_components/ng-sortable/dist/ng-sortable.js"></script>
+
+
+
+{#    ANGULAR FULLCALENDAR #}
+{#        <script type="text/javascript" src="bower_components/jquery/jquery.js"></script>#}
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/jquery-ui/ui/jquery-ui.js"></script>
+{#        <script type="text/javascript" src="bower_components/angular/angular.js"></script>#}
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-ui-calendar/src/calendar.js"></script>
+{#        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/fullcalendar/fullcalendar.js"></script>#}
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/fullcalendar/dist/fullcalendar.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/fullcalendar/dist/gcal.js"></script>
+        <script src="{{ STATIC_URL }}js/angular-app/directive/angular-alloggio-calendar.js" type="text/javascript" charset="utf-8"></script>
+
+
+    <script src="{{ STATIC_URL }}js/angular-app/directive/angular-alloggio-calendar.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}js/angular-app/directive/angular-optional-services.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}js/angular-app/directive/angular-gallery.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}js/angular-app/directive/angular-address.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+{% endblock %}
+
+
+{% block angular_app_js %}
+    <script src="{{ STATIC_URL }}js/angular-app/app_alloggio_create.js" type="text/javascript" charset="utf-8"></script>
+{% endblock %}

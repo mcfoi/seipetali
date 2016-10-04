@@ -1,0 +1,150 @@
+{% extends 'layout/base.html' %}
+
+<!-- ====================================================== -->
+
+{% block title %}
+    {{ block.super }}
+    Faq
+{% endblock %}
+
+<!-- ====================================================== -->
+{% block content %}
+
+
+
+
+            <div class="row ">
+                <div class="col-md-2 " style="background-color: white">
+
+                    <ul class="nav nav-pills nav-stacked faq-nav">
+
+                      <li  class="{% if not gruppo %}active{% endif %}"><a href="/faq/list/">Tutte le categorie</a></li>
+                        {% for k,v in gruppi %}
+                            <li class="{% if gruppo == k %}active{% endif %}">
+                                <a  href="/faq/list/{{k}}">{{v}}</a>
+                            </li>
+                        {% endfor %}
+{#                      <li ><a href="#">Profile</a></li>#}
+{#                      <li ><a href="#">Messages</a></li>#}
+                    </ul>
+
+                </div>
+                <div class="col-md-10 bg-yellow" style="min-height: 200px">
+
+                    <div class="panel-body">
+
+                    {% if request.user.is_superuser %}
+                        <div class="row">
+                            <div class="col-md-12">
+
+                            <a class="btn btn-success pull-right" href="{% url 'faq_create' %}">nuova faq</a>
+                            </div>
+
+                        </div>
+                        <hr>
+                    {% endif %}
+
+
+
+
+                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                    {% for faq in faqs %}
+
+                        <div class="panel panel-default" style="color:black">
+                            <div class="panel-heading" role="tab" id="headingFaq{{ faq.id }}">
+                              <h4 class="panel-title">
+                                  {% if request.user.is_superuser %}
+                                    <span class=" h6">
+                                        <a class="pull-right" href="{% url 'faq_edit' faq.pk %}">edit</a>
+
+                                    </span>
+                                {% endif %}
+                                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseFaq{{ faq.id }}" aria-expanded="false" aria-controls="collapseFaq{{ faq.id }}">
+                                  {{ faq.domanda }}
+                                </a>
+                              </h4>
+                            </div>
+                            <div id="collapseFaq{{ faq.id }}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFaq{{ faq.id }}">
+                              <div class="panel-body">
+                                 {{ faq.risposta }}
+                              </div>
+                            </div>
+                          </div>
+
+
+
+
+
+
+
+{#                        <div class="panel" style="color:black">#}
+{#                            <div class="panel-body">#}
+{##}
+{#                            <h1>#}
+{#                                {% if request.user.is_superuser %}#}
+{#                                    <span class=" h6">#}
+{#                                        <a class="pull-right" href="{% url 'faq_edit' faq.pk %}">edit</a>#}
+{##}
+{#                                    </span>#}
+{#                                {% endif %}#}
+{#                                <a class="faq_domanda">{{ faq.domanda }}</a>#}
+{#                            </h1>#}
+{#                            <h5><em>{{ faq.gruppo }}</em></h5>#}
+{#                            <p> {{ faq.risposta }}</p>#}
+{#                            </div>#}
+{#                        </div>#}
+                    {% endfor %}
+                     </div>
+                    </div>
+                </div>
+
+            </div>
+
+    <hr>
+
+
+
+
+
+{#    <hr>#}
+{##}
+{#            <div class="faq-intestazione-gruppi">#}
+{#                <a href="/faq/list/">Tutte le categorie</a>#}
+{##}
+{#                {% for k,v in gruppi %}#}
+{#                    <a href="/faq/list/{{k}}">{{v}}</a>#}
+{#                {% endfor %}#}
+{##}
+{#            </div>#}
+{##}
+{#            <h1 > FAQ {{ gruppo }}</h1>#}
+{##}
+{#            <ul>#}
+{##}
+{#            {% for faq in faqs %}#}
+{#                <h1>#}
+{#                    {% if request.user.is_superuser %}#}
+{#                        <span class=" h6">#}
+{#                            <a class="pull-right" href="{% url 'faq_edit' faq.pk %}">edit</a>#}
+{##}
+{#                        </span>#}
+{#                    {% endif %}#}
+{#                    <a class="faq_domanda">{{ faq.pk }} - {{ faq.domanda }}</a>#}
+{#                </h1>#}
+{#                <h5><em>{{ faq.gruppo }}</em></h5>#}
+{#                <p> {{ faq.risposta }}</p>#}
+{#            {% endfor %}#}
+{#            </ul>#}
+{% endblock %}
+<!-- ====================================================== -->
+
+{% block footer_js %}
+{{block.super}}
+  <script>
+    $(document).ready(function() {
+       $('.container p').slideUp(0);
+       $('a.faq_domanda').click( function() { $('.container p').slideUp(0);$(this).parent().next().next().slideToggle()});
+    });
+  </script>
+
+{% endblock %}

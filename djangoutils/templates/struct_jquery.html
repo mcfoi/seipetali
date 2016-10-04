@@ -1,0 +1,9 @@
+{% extends "struct.html" %}
+
+{% block dom %}
+<script>
+  $(document).ready(function(){
+  {% block jquery %}{% endblock %}
+  });
+</script>
+{% endblock %}

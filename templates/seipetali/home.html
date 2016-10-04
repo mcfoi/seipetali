@@ -1,0 +1,81 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags menu_tags cms_tags %}
+{% load static %}
+
+{% block title %}
+    Home
+{% endblock %}
+
+
+{#Replace block to remove navbar and footer#}
+
+{% block site_wrapper_class %}{{ block.super }} pTop0{% endblock %}
+{% block navbar %}
+     <img src="{{ STATIC_URL }}images/LOGO/6 petali marchio.png" style="
+              float: left;
+              width: 180px;
+              margin-left: 50px;
+		    margin-top: 5px;
+
+            ">
+{% endblock %}
+
+{% block footer %}
+    <div style="position: absolute; bottom: 10px ; left: 10px">
+        <a>Termini e privacy</a>
+    </div>
+    <div style="position: absolute; bottom: 10px ; right: 10px">
+        <a>All right reserved &copy; Seipetali {% now "Y" %}</a>
+    </div>
+{% endblock %}
+
+{% block free_content %}
+
+        <div style="background-color: transparent;
+  position: absolute;
+  width: 100%; height: 100% ; padding-bottom: 70px">
+
+            <div class="text-center" style="background-color: transparent; width: 100%; height: 100%">
+                <img style="max-height: 80%;max-width: 100%;" src="{% static 'images/layout/home_con_scritte_low.jpg' %}">
+                 <a href="{% page_url 'chi_siamo' %}"><h2>Entra nel sito</h2></a>
+            </div>
+
+        </div>
+
+{#    <div class="row">#}
+{#        <div class="col-md-12 text-center " style="">#}
+{##}
+{#            <img style="width: 20%" src="{% static 'images/layout/home_con_scritte.png' %}">#}
+{##}
+{#            <div  class='text-center' >#}
+{##}
+{#                <a href="{% page_url 'chi_siamo' %}">#}
+{##}
+{#                    <h2>Una casa</h2>#}
+{#                    <h3>per 1 giorno, 1 settimana, 1 mese, accogliente e conveniente</h3>#}
+{#                </a>#}
+{#            </div>#}
+{##}
+{##}
+{#                <form action="" method="post" class="uniForm row">#}
+{#                    {% csrf_token %}#}
+{##}
+{#                    {% crispy searchForm %}#}
+{##}
+{#                    <div >#}
+{##}
+{#                        <input type="text" class="form-control" ng-model='checkin' is-open="opened" ng-focus="opened=true" datepicker-popup />#}
+{#                          <span class="input-group-btn">#}
+{#                            <button type="button" class="btn btn-default" ng-click="opened=true;$event.stopPropagation()"><i class="glyphicon glyphicon-calendar"></i></button>#}
+{#                          </span>#}
+{#                    </div>#}
+{##}
+{#                    <button class="btn btn-primary" type="submit"  value="Search" >Search</button>#}
+{#                </form>#}
+{#        </div>#}
+{#    </div>#}
+
+
+
+
+{% endblock %}

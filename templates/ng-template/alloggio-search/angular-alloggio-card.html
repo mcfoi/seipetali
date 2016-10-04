@@ -1,0 +1,44 @@
+{% load icanhaz_tags %}
+{% load i18n %}
+
+    {% angular %}
+
+
+<div class="thumbnail">
+    <a 
+	{# ng-href="[[ alloggio_url ]]" #}
+	{# ng-click='openAlloggioDetail($event)'#}
+	>
+
+    <div style="position: relative">
+        <img ng-if='currentImageSrc()' ng-src="[[currentImageSrc()]]" width="100%">
+        <img ng-if='!currentImageSrc()' ng-src="/static/images/LOGO/6 petali marchio.png" width="100%">
+	
+        <span ng-if='alloggio.gallery.photos.lenght > 1'  style="position: absolute; top: 50%" ng-click='prevImage($event)' class="glyphicon glyphicon-chevron-left pull-left" aria-hidden="true"></span>
+        <span  ng-if='alloggio.gallery.photos.lenght > 1'  style="position: absolute; top: 50%; right: 0px" ng-click='nextImage($event)' class="glyphicon glyphicon-chevron-right pull-right" aria-hidden="true"></span>
+
+
+        {#<div class="card-prezzo" >[[ alloggio.prezzo ]] €</div>#}
+    </div>
+    </a>
+
+</div>
+
+<div class="caption">
+
+    <p> <span class="h5 text-capitalize"> [[ alloggio.descrizione_breve ]]:</span>[[ alloggio.descrizione_lunga | limitTo : 20]]
+{#        <a ng-href="[[ alloggio_url ]]" ng-click='openAlloggioDetail($event)' class="btn btn-xs btn-primary" role="button">View</a>#}
+    </p>
+
+
+  </div>
+
+<pre style="font-size:9px" ng-if='debug'>[[ alloggio | json]]</pre>
+
+
+
+
+
+{% endangular %}
+
+

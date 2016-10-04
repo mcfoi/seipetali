@@ -1,0 +1,209 @@
+<table>
+    <tr>
+        <td >
+            <h2>Registrato nuovo alloggio</h2>
+{#        </td>#}
+{#        <td width="100">#}
+{#            <img style="vertical-align: middle;" width="100" class="img-rounded" src="#}
+{#                    {{ base_url }}{{ reservation.qr_code.qr_image.url }}">#}
+            {#     <img style="vertical-align: middle;" width="100"  src="http://www.iseipetali.it/media/media/qr_codes/url/UrlQR_1.png">#}
+        </td>
+    </tr>
+</table>
+
+
+{#<div >#}
+{##}
+{#    <img width="100" class="img-rounded" src="{{ base_url }}{{ reservation.qr_code.qr_image.url }}">#}
+{#     <img width="100"  src="http://www.iseipetali.it/media/media/qr_codes/url/UrlQR_1.png">#}
+{##}
+{#</div>#}
+
+{#<table>#}
+{#    <tr>#}
+{#        <td>#}
+{#            Prenotazione numero:#}
+{#        </td>#}
+{#        <td>#}
+{#            <a href='{{ base_url }}{{ reservation.get_absolute_url }}'>{{ reservation.pk }}</a>#}
+{#        </td>#}
+{##}
+{#    </tr>#}
+{#    <tr>#}
+{#        <td>#}
+{#            Appartamento:#}
+{##}
+{#        </td>#}
+{#        <td>#}
+{#            ({{ alloggio.id }}) {{ alloggio.tipo }} {{ alloggio.descrizione_breve }}#}
+{#        </td>#}
+{##}
+{#    </tr>#}
+{#    <tr>#}
+{#        <td>#}
+{#            Chek-in:#}
+{#        </td>#}
+{#        <td>#}
+{#            {{ reservation.event.start }}#}
+{#        </td>#}
+{##}
+{#    </tr>#}
+{#    <tr>#}
+{#        <td>#}
+{#            Chek-out:#}
+{#        </td>#}
+{#        <td>#}
+{#            {{ reservation.event.end }}#}
+{#        </td>#}
+{##}
+{#    </tr>#}
+{#</table>#}
+
+<br>
+
+<br>
+
+<table>
+    <tr>
+        <td width="400">
+            <h4>Dettagli contatto:</h4>
+        </td>
+        <td width="400">
+            <h4>Dettaglio alloggio</h4>
+        </td>
+    </tr>
+    <tr>
+        <td width="400">
+
+            <table>
+                <tr>
+                    <td>Nome</td>
+                    <td>{{ alloggio.owner.first_name }}</td>
+                </tr>
+                <tr>
+                    <td>Cognome</td>
+                    <td>{{ alloggio.owner.last_name }}</td>
+                </tr>
+                <tr>
+                    <td>email</td>
+                    <td>{{ alloggio.owner.email }}</td>
+                </tr>
+                <tr>
+                    <td>phone_number</td>
+                    <td>{{ alloggio.owner.phone_number }}</td>
+                </tr>
+                <tr>
+                    <td>username</td>
+                    <td>{{ alloggio.owner.username }}</td>
+                </tr>
+            </table>
+
+        </td>
+        <td width="400">
+
+
+            <table>
+                {#                        <td>id</td>#}
+                {#                        <td>{{alloggio.owner.id}}</td>#}
+                <tr>
+
+                    <td>Nome</td>
+                    <td>{{ alloggio.descrizione_breve }}</td>
+                </tr>
+                <tr>
+
+                    <td>tipo</td>
+                    <td>{{ alloggio.tipo }}</td>
+                </tr>
+
+                <tr>
+
+                    <td>address</td>
+                    <td>{{ alloggio.address }}</td>
+                </tr>
+
+
+                <tr>
+
+                    <td>&nbsp;</td>
+                    <td></td>
+                </tr>
+
+                <tr>
+
+                    <td>&nbsp;</td>
+                    <td></td>
+                </tr>
+            </table>
+
+        </td>
+    </tr>
+
+</table>
+
+<h3><a href="{{ base_url }}{{ alloggio.get_absolute_url }}">Guarda l'alloggio sul sito</a></h3>
+
+
+{#<table class="table" style="border: 1px solid #ddd; margin-top:20px" border="1" width='800' >#}
+{##}
+{#    <thead>#}
+{#    <tr style="border: 1px solid #ddd;">#}
+{#        <th width='60%'>Descrizione</th>#}
+{#        <th colspan="2" class="text-center">Tariffa</th>#}
+{##}
+{#        <th class="text-center">Quantita</th>#}
+{#        <th class="text-right">Totale Iva</th>#}
+{#        <th class="text-right">Totale + Iva</th>#}
+{#    </tr>#}
+{#    </thead>#}
+{#    <tbody>#}
+{#    <tr style="border: 1px solid #ddd;">#}
+{#        <td>Tariffa base</td>#}
+{#        <td class="text-right">{{ reservation.getWeekPrice }} </td>#}
+{#        <td>€/week</td>#}
+{#        <td class="text-center">{{ reservation.getDayCount }} notti</td>#}
+{#        <td class="text-right">{{ reservation.iva }} €</td>#}
+{#        <td class="text-right">{{ alloggioTotal }} €</td>#}
+{#    </tr>#}
+{##}
+{#    {% for service in reservation.servizi_opzional.all %}#}
+{#        <tr style="border: 1px solid #ddd;">#}
+{#            <td>{{ service.original_service.nome }}</td>#}
+{#            <td class="text-right">{{ service.costo }}</td>#}
+{#            <td> €/{{ service.fattore_tempo }}gg</td>#}
+{#            <td class="text-center">{{ service.count }}</td>#}
+{#            <td class="text-right">{{ service.iva }} €</td>#}
+{#            <td class="text-right">{{ service.getTotal }} €</td>#}
+{#        </tr>#}
+{#    {% endfor %}#}
+{##}
+{##}
+{#    </tbody>#}
+{#</table>#}
+{##}
+{##}
+{#<div class="">#}
+{#    <h4>Estremi di pagamento</h4>#}
+{##}
+{#    <div ng-if="paymentType=='bonifico'">#}
+{#        Banca Popolare di Milano:<br>#}
+{#        IBAN IT02 0987 5429 000000003795<br>#}
+{#        Indicare il codice di prenotazione nella causale di pagamento<br>#}
+{#        <br>#}
+{#    </div>#}
+{#    <div ng-if="paymentType=='vaglia'">#}
+{#        VAGLIA POSTALE ORDINARIO (non on line):<br>#}
+{#        Cooperativa iseipetali<br>#}
+{#        Via xxxxx 00<br>#}
+{#        20100 Milano (MI)<br>#}
+{#    </div>#}
+{#    <br>#}
+{#    La prenotazione rimane bloccata per 10gg#}
+{#    fino al ricevimento del denaro.#}
+{##}
+{#</div>#}
+{##}
+{#<br>#}
+{#<br>#}
+{#<br>#}
+

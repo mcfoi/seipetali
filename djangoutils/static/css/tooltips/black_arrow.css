@@ -1,0 +1,15 @@
+.tooltip {
+    display: none;
+    background: transparent url(../../images/tooltips/black_arrow.png);
+    font-size: 12px;
+    height: 70px;
+    width: 160px;
+    padding: 25px;
+    color: #fff;
+}
+
+.tooltip.bottom {
+    background: transparent url(../../images/tooltips/black_arrow_bottom.png);
+    padding-top: 40px;
+    height: 55px;
+}

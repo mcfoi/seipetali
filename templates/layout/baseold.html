@@ -1,0 +1,156 @@
+{% load i18n future staticfiles compress djangular_tags %}
+<!DOCTYPE html>
+<html ng-app='{% block ng_app_name %}seipetali-app{% endblock %}'>
+<head>
+    <title> {% block title %} 6 petali {% endblock %}</title>
+
+    {% block head_css %}
+        <link rel="stylesheet" href="{{ STATIC_URL }}bower_components/bootstrap-sass-official/assets/stylesheets/_bootstrap.css" type="text/css" charset="utf-8">
+        <link rel="stylesheet" href="{{ STATIC_URL }}bower_components/ng-sortable/dist/ng-sortable.css" type="text/css" charset="utf-8">
+        {#        <link rel="stylesheet" href="{{ STATIC_URL }}bower_components/ng-sortable/dist/ng-sortable.style.css" type="text/css" charset="utf-8">#}
+        <!-- STILE GENERALE -->
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/stile.css" type="text/css" charset="utf-8">
+
+        <!-- STILE INLINE -->
+        <link rel="stylesheet" href="{{ STATIC_URL }}css/ng-sortable.css" type="text/css" charset="utf-8">
+        <style>
+            .as-sortable-drag .col-md-3 {
+                width: 100%;
+            }
+
+            .as-sortable-hidden {
+                display: none;
+                width: 0px;
+                height: 0px;
+            }
+
+            .min-thumb-h {
+                min-height: 253px
+            }
+        </style>
+
+
+        {#        ANGULAR FULLCALENDAR #}
+        {#        <link rel="stylesheet" href="{{ STATIC_URL }}bower_components/fullcalendar/fullcalendar.css"/>#}
+        <link rel="stylesheet" href="{{ STATIC_URL }}bower_components/fullcalendar/dist/fullcalendar.css"/>
+
+    {% endblock %}
+
+
+    {% compress js %}
+
+        {% block compress_header_js %}
+        {% endblock %}
+
+    {% endcompress %}
+
+
+
+
+    {% block ng_templates %}
+    {% endblock %}
+
+
+</head>
+<body>
+
+{% include 'layout/_navbar.html' %}
+
+
+<div class="container">
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+
+  <script src="https://maps.googleapis.com/maps/api/js?" type="text/javascript" charset="utf-8"></script>
+ {% compress js %}
+{% block footer_js %}
+
+
+     {#        JQUERY#}
+        <script src="{{ STATIC_URL }}bower_components/jquery/dist/jquery.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}bower_components/moment/min/moment-with-locales.js" type="text/javascript" charset="utf-8"></script>
+
+
+        {#        Base angular script#}
+        <script src="{{ STATIC_URL }}bower_components/angular/angular.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}bower_components/angular-resource/angular-resource.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}js/lib/angular-tasty-resource-master/tasty-resource.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}bower_components/angular-route/angular-route.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}bower_components/angular-animate/angular-animate.js" type="text/javascript" charset="utf-8"></script>
+
+
+        {#        Django Angular#}
+        <script src="{% static 'djangular/js/django-angular.js' %}"></script>
+
+        {#        TYPEAHEAD#}
+        {#        <script src="{{ STATIC_URL }}bower_components/typeahead.js/dist/typeahead.bundle.js" type="text/javascript" charset="utf-8"></script>#}
+        <script src="{{ STATIC_URL }}bower_components/typeahead.js/dist/typeahead.jquery.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}bower_components/typeahead.js/dist/bloodhound.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}bower_components/angular-typeahead/angular-typeahead.js" type="text/javascript" charset="utf-8"></script>
+
+
+        {#        ANGULAR FILE UPLOAD#}
+        <script src="{{ STATIC_URL }}bower_components/es5-shim/es5-sham.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}bower_components/es5-shim/es5-shim.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}bower_components/angular-file-upload/angular-file-upload.js" type="text/javascript" charset="utf-8"></script>
+
+
+        {#        ANGULAR GOOGLE MAPS#}
+        <script src="{{ STATIC_URL }}bower_components/lodash/dist/lodash.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}bower_components/angular-google-maps/dist/angular-google-maps.js" type="text/javascript" charset="utf-8"></script>
+
+
+        {#      ANGULAR SORTABLE#}
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/ng-sortable/dist/ng-sortable.js"></script>
+
+
+
+        {#        ANGULAR FULLCALENDAR #}
+        {#        <script type="text/javascript" src="bower_components/jquery/jquery.js"></script>#}
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/jquery-ui/ui/jquery-ui.js"></script>
+        {#        <script type="text/javascript" src="bower_components/angular/angular.js"></script>#}
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/angular-ui-calendar/src/calendar.js"></script>
+        {#        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/fullcalendar/fullcalendar.js"></script>#}
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/fullcalendar/dist/fullcalendar.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}bower_components/fullcalendar/dist/gcal.js"></script>
+        <script src="{{ STATIC_URL }}js/angular-app/directive/angular-alloggio-calendar.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+
+        <script src="{{ STATIC_URL }}js/angular-app/app.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+        <script src="{{ STATIC_URL }}js/angular-app/directive/angular-address.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}js/angular-app/directive/angular-gallery.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}js/angular-app/directive/angular-optional-services.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}js/angular-app/directive/angular-alloggio-search.js" type="text/javascript" charset="utf-8"></script>
+
+        {#        <script src="{{ STATIC_URL }}js/angular-app/controller/alloggio-calendar-controller.js" type="text/javascript" charset="utf-8"></script>#}
+
+
+        <script src="{{ STATIC_URL }}bower_components/angular-bootstrap/ui-bootstrap.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}bower_components/angular-bootstrap/ui-bootstrap-tpls.js" type="text/javascript" charset="utf-8"></script>
+
+        <script>angular.module('ng.django.urls').constant('patterns', {% load_djng_urls %});</script>
+
+
+    <script type="text/javascript">
+        $(function () {
+            $('#languageForm li').on('click', function (e) {
+                $('#language_code').val($(e.target).attr('value'));
+                $('#languageForm').submit();
+            });
+        })
+    </script>
+{% endblock %}
+{% endcompress %}
+
+
+</body>
+</html>

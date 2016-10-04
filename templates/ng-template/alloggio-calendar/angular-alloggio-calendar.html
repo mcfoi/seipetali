@@ -1,0 +1,37 @@
+{#<script type="text/ng-template" id="angular-alloggio-calendar.html">#}
+{% load icanhaz_tags %}
+{% load i18n %}
+
+    {% angular %}
+
+    <h1>Calendario Alloggio</h1>
+    <p> Blocca le date in cui questo alloggio non sara disponibile</p>
+    <div class="row">
+        <div class="col-md-4">
+            <ul class="list-group">
+
+                <li ng-repeat="e in events | orderBy:'start':false"" class="ng-scope list-group-item " ng-class="{'list-group-item-info': e.hover }">
+{#                    <div class="alert  ng-binding" ng-class="{'alert-success': e.hover , 'alert-info':!e.hover}" >#}
+                        <a class="close" ng-click="remove($index)">remove<i class="icon-remove"></i></a>
+                        <b>
+                            [[e.title]]
+{#                            <input ng-model="e.title" class="ng-pristine ng-valid" ></b>#}
+
+                        </b>
+                        <br>
+                        [[ e.start | date:'dd-MM-yyyy ' ]] -- [[ e.end | date:'dd-MM-yyyy ' ]]
+
+{#                    </div>#}
+                </li>
+            </ul>
+{#            <pre>[[ calendar |json]]</pre>#}
+{#             <pre>[[ events |json]]</pre>#}
+        </div>
+        <div class="col-md-8">
+             <div ui-calendar="uiConfig.calendar" ng-model="eventSources" calendar="alloggioCalendar"></div>
+        </div>
+    </div>
+
+
+    {% endangular %}
+{#</script>#}

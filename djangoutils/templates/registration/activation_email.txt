@@ -1,0 +1,11 @@
+Hi there!
+
+Please confirm your new account at {{ site.name }} by clicking on the
+link:
+
+  {{ site.domain }}/accounts/activate/{{ activation_key }}/
+
+If you didn't create this account, then please ignore this email entirely.
+
+Thanks!
+The staff at {{ site.name }}

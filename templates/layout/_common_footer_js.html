@@ -1,0 +1,45 @@
+{% load djangular_tags staticfiles %}
+
+
+{#        JQUERY#}
+<script src="{{ STATIC_URL }}bower_components/jquery/dist/jquery.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ STATIC_URL }}bower_components/bootstrap-sass-official/assets/javascripts/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+{#        <script src="{{ STATIC_URL }}bower_components/moment/min/moment-with-locales.js" type="text/javascript" charset="utf-8"></script>#}
+<script src="{{ STATIC_URL }}bower_components/moment/min/moment.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ STATIC_URL }}bower_components/moment/locale/it.js" type="text/javascript" charset="utf-8"></script>
+
+
+{#        Base angular script#}
+<script src="{{ STATIC_URL }}bower_components/angular/angular.js" type="text/javascript" charset="utf-8"></script>
+{#<script src="{{ STATIC_URL }}bower_components/angular"></script>#}
+<script src="{{ STATIC_URL }}bower_components/angular-resource/angular-resource.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ STATIC_URL }}js/lib/angular-tasty-resource-master/tasty-resource.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ STATIC_URL }}bower_components/angular-route/angular-route.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ STATIC_URL }}bower_components/angular-animate/angular-animate.js" type="text/javascript" charset="utf-8"></script>
+
+
+{#ANGULAR BOOTSTRAP#}
+<script src="{{ STATIC_URL }}bower_components/angular-bootstrap/ui-bootstrap.js" type="text/javascript" charset="utf-8"></script>
+<script src="{{ STATIC_URL }}bower_components/angular-bootstrap/ui-bootstrap-tpls.js" type="text/javascript" charset="utf-8"></script>
+
+{#        Django Angular#}
+<script src="{% static 'djangular/js/django-angular.js' %}"></script>
+<script>angular.module('ng.django.urls').constant('patterns',{% load_djng_urls %});</script>
+
+
+
+{#<script src="{{ STATIC_URL }}js/angular-app/app_minimal.js" type="text/javascript" charset="utf-8"></script>#}
+{#<script src="{{ STATIC_URL }}js/angular-app/app_config.js" type="text/javascript" charset="utf-8"></script>#}
+{#<script src="{{ STATIC_URL }}js/angular-app/controller/html-controller.js" type="text/javascript" charset="utf-8"></script>#}
+
+
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#languageForm li').on('click', function (e) {
+            $('#language_code').val($(e.target).attr('value'));
+            $('#languageForm').submit();
+        });
+    })
+</script>

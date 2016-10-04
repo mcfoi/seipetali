@@ -1,0 +1,26 @@
+{% extends 'layout/base.html' %}
+
+
+{% block title %}
+    {{ block.super }}
+    Lista alloggi
+{% endblock %}
+
+
+
+{% block content %}
+<h1 xmlns="http://www.w3.org/1999/html"> lista alloggi</h1>
+
+<ul>
+
+{% for alloggio in alloggi %}
+    <li>
+        <a href="{% url 'alloggio_detail' alloggio.pk %}">{{ alloggio.pk }}</a>, <a href="{% url 'alloggio_edit' alloggio.pk %}">edit</a> , {{ alloggio.active }},  {{ alloggio.postiletto }} , {{ alloggio.tipo }} , {{ alloggio.address }}, {{ alloggio.descrizione_breve }}
+    </li>
+{% endfor %}
+</ul>
+
+    <a class="btn btn-success" href="{% url 'alloggio_create' %}"> Crea nuovo</a>
+
+{% endblock %}
+

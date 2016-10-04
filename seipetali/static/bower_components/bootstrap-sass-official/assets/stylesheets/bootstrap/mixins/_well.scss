@@ -1,0 +1,6 @@
+@mixin well-variant($bg-color, $color) {
+  background-color: $bg-color;
+  color: $color;
+  border-color: darken($bg-color,5%);
+
+}

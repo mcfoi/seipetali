@@ -1,0 +1,232 @@
+{% load i18n future staticfiles compress djangular_tags sekizai_tags cms_tags menu_tags%}
+<!DOCTYPE html>
+<html ng-app='{% block ng_app_name %}seipetali-app{% endblock %}' ng-controller='htmlCtrl'>
+<head>
+    <title> {% block title %} 6 petali {% endblock %}</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    {% block head_css %}
+        {% include 'layout/_common_head_css.html' %}
+    {% endblock %}
+
+    {#    css from css#}
+    {% render_block "css" %}
+
+
+
+    {% compress js %}
+        {% block compress_header_js %}
+        {% endblock %}
+    {% endcompress %}
+
+
+
+
+    {% block ng_templates %}
+    {% endblock %}
+
+    <meta name="google-site-verification" content="UL8V7t9tr8cnpQIbTPE7vmcnhvVW0lB8bx0R6eR7-J4" />
+</head>
+<body>
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/it_IT/sdk.js#xfbml=1&version=v2.4&appId=252159931593125";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<div class="{% block site_wrapper_class %}site-wrapper{% endblock %}">
+     {% block navbar %}
+        {% include 'layout/_navbar.html' %}
+     {% endblock %}
+
+
+    <div class='wrapper-body'>
+
+
+       <div class="container">
+            {% cms_toolbar %}
+            {% block content %}
+
+            {% endblock %}
+        </div>
+
+        {% block free_content %}
+
+        {% endblock %}
+    </div>
+
+ {% block footer %}
+     <footer class="visible-print-block">
+         <hr>
+         &copy; iseipetali {% now "Y" %}<br>
+        Seipetali cooperativa sociale
+     </footer>
+    <footer class="hidden-print">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-md-push-4 col-center">
+{#                    <span style="color: white">IN RETE CON: </span> #}
+                <div class="row text-center">
+
+                    <a alt='Comune di milano' href="https://www.comune.milano.it/">
+                        <img class="footer-logo-comune" src="{{ STATIC_URL }}images/comune-di-milano.png" >
+{#                        Comune di Milano#}
+                    </a>
+                </div>
+                    <ul class="bs-docs-footer-links ">
+{#                      <li>Seipetali</li>#}
+{#                      <li>·</li>#}
+                      {% page_url 'chi_siamo' as currurl %}
+                      <li><a href="{{ currurl }}" {% if currurl == request.path %} class='active' {% endif %}>{% trans 'Chi siamo' %}</a></li>
+                      <li>·</li>
+
+                     {# {% url 'faq_list' as currurl %}#}
+                     {# <li><a href="{{ currurl }}" {% if currurl in request.path %} class='active' {% endif %}>{% trans 'Aiuto'%}</a></li>#}
+                     {# <li>·</li>#}
+                      {% page_url 'terms' as currurl %}
+                      <li><a href="{{ currurl }}" {% if currurl == request.path %} class='active' {% endif %}>{% trans 'Termini e condizioni'%}</a></li>
+                      <li>·</li>
+                      {% page_url 'privacy' as currurl %}
+                      <li ><a href="{{ currurl }}" {% if currurl == request.path %} class='active' {% endif %} >{% trans 'Privacy & Policy' %}</a></li>
+
+                    </ul>
+
+                </div>
+
+
+
+
+
+
+                <div class="col-md-4 col-md-push-4 col-right">
+
+
+                    {% if request.toolbar %}
+                        <ul class="bs-docs-footer-links  list-inline language-list inline mTop0">
+                        {% language_chooser "menu/language_chooser.html" %}
+                        </ul>
+                    {% else %}
+                         <form id='languageForm' action="{% url 'set_language' %}" method="post" class="inline">
+                            {% csrf_token %}
+                            <input name="next" type="hidden" value="{{ current_path }}"/>
+                            <input id='language_code' name="language" type="hidden" value="{{ LANGUAGE_CODE }}"/>
+
+                            <ul class="bs-docs-footer-links  list-inline language-list inline mTop0">
+                            {% for lang in LANGUAGES %}
+                                <li style="{% ifnotequal lang.0 LANGUAGE_CODE %}cursor: pointer {% endifnotequal %}"  value="{{ lang.0 }}" class="lang text-uppercase {% ifequal lang.0 LANGUAGE_CODE %} selected {% endifequal %}"> {{ lang.0 }}</li>
+                                {% if not forloop.last %}
+                                <li>·</li>
+                                {% endif %}
+                            {% endfor %}
+                            </ul>
+                        </form>
+
+                    {% endif %}
+                    <ul class=" list-inline " style="margin-left: 10px">
+                        <li>
+                            All right reserved &copy; iseipetali {% now "Y" %}
+                            <br>
+                            P.IVA 08598920968 REA: MI-2036164
+
+
+                        </li>
+                    </ul>
+
+                </div>
+
+             <div class="col-md-4 clearfix col-md-pull-8 col-left">
+
+                 <a href="http://www.cadmi.org/">
+
+                    <img class="footer-logo footer-logo-casadelledonne" src="{{ STATIC_URL }}images/logo_CasaDelleDonne2014_vert_dentro-alpha.png" style="padding-top: 10px;">
+                 </a>
+
+
+{#                    <img class="footer-logo-seipetali" src="{{ STATIC_URL }}images/logo_seipetali.png" style="#}
+{##}
+{#                    ">#}
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+        </div>
+    </footer>
+ {% endblock %}
+</div>
+
+
+
+
+
+
+
+{#     js from css#}
+{% render_block "js" %}
+
+
+
+{#Javascript non compressi#}
+{#js esterni#}
+{% block footer_js_pre %}
+
+{% endblock %}
+
+{#Javascript compressi#}
+ {% compress js %}
+
+     {% block compress_footer_js %}
+         {% include 'layout/_common_footer_js.html' %}
+
+
+
+        {% block angular_app_js %}
+            <script src="{{ STATIC_URL }}js/angular-app/app_minimal.js" type="text/javascript" charset="utf-8"></script>
+        {% endblock %}
+        <script src="{{ STATIC_URL }}js/angular-app/app_config.js" type="text/javascript" charset="utf-8"></script>
+        <script src="{{ STATIC_URL }}js/angular-app/controller/html-controller.js" type="text/javascript" charset="utf-8"></script>
+
+
+
+     {% endblock %}
+
+
+
+
+{% endcompress %}
+
+
+
+{#Javascript non compressi#}
+{#js esterni#}
+{% block footer_js %}
+
+{% endblock %}
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-74378429-1', 'auto');
+  ga('set', 'anonymizeIp', true);
+  ga('send', 'pageview');
+
+</script>
+
+</body>
+</html>

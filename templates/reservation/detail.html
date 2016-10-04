@@ -1,0 +1,390 @@
+{% extends 'layout/base.html' %}
+{% load icanhaz_tags i18n %}
+
+
+{% block content %}
+    {% angular %}
+    <h1>{{ reservation.alloggio.descrizione_breve }}</h1>
+
+    <div class="bg-green panel-body reservation-detail-riepilogo">
+
+
+        <div class="row">
+
+
+            <div class="col-xs-4 text-center">
+                <h3 class="">{% trans 'Check-in' %}</h3>
+                {#            <p>{{ reservation.event.start |date:"l d F Y" }}</p>#}
+                <time datetime="{{ reservation.event.start }}" class="icon">
+                    <em>{{ reservation.event.start |date:"l" }}</em>
+                    <strong>{{ reservation.event.start |date:"F Y" |upper }}</strong>
+                    <span>{{ reservation.event.start |date:"d" }}</span>
+                </time>
+            </div>
+            <div class="col-xs-4 text-center">
+                <h3 class="">{% trans 'Check-out' %}</h3>
+                <time datetime="{{ reservation.event.end }}" class="icon">
+                    <em>{{ reservation.event.end |date:"l" }}</em>
+                    <strong>{{ reservation.event.end |date:"F Y" |upper }}</strong>
+                    <span>{{ reservation.event.end |date:"d" }}</span>
+                </time>
+
+            </div>
+            <div class="col-xs-4 text-center">
+                <h3 class="">{% trans 'Prenotazione' %}</h3>
+                {{ reservation.qr_code_img |safe}}
+                <p>PNUM: {{ reservation.id|stringformat:"05d" }}</p>
+            </div>
+
+        </div>
+        <h5 class="pull-right text-right hidden-print" style="width: 100%;">Riepilogo date</h5>
+    </div>
+
+    <div class="row reservation-detail-contatti">
+        <div class=" col-md-12">
+            <div class="clearfix bg-yellow panel-body" >
+
+
+                <div class="row">
+                    <div class="col-xs-6 " >
+                        <div class="">
+                                <h4>Contatti locatario</h4>
+                                <dl class="dl-horizontal">
+            {#                        <dt>id</dt>#}
+            {#                        <dd>{{reservation.user.id}}</dd>#}
+
+                                    <dt>Nome</dt>
+                                    <dd>{{reservation.user.first_name}}</dd>
+
+                                    <dt>Cognome</dt>
+                                    <dd>{{reservation.user.last_name}}</dd>
+
+                                    <dt>email</dt>
+                                    <dd>{{reservation.user.email}}</dd>
+
+                                    <dt>phone_number</dt>
+                                    <dd>{{reservation.user.phone_number}}</dd>
+
+                                    <dt>username</dt>
+                                    <dd>{{reservation.user.username}}</dd>
+                                </dl>
+                            </div>
+                     </div>
+                    <div class="col-xs-6 " >
+                        <div class="">
+                                <h4>Dettaglio alloggio</h4>
+                                <dl class="dl-horizontal">
+            {#                        <dt>id</dt>#}
+            {#                        <dd>{{reservation.user.id}}</dd>#}
+
+                                    <dt>Nome</dt>
+                                    <dd>{{reservation.alloggio.descrizione_breve}}</dd>
+
+                                    <dt>tipo</dt>
+                                    <dd>{{reservation.alloggio.tipo}}</dd>
+
+                                    <dt>address</dt>
+                                    <dd>{{reservation.alloggio.address}}</dd>
+
+
+
+                                </dl>
+                            </div>
+                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row reservation-detail-costi"  style="">
+        <div class="col-md-12">
+            <div class="well" style="background-color: white">
+
+                <table class="table">
+
+                <thead>
+                <tr>
+                    <th width='60%'>Descrizione</th>
+                    <th colspan="2" class="text-center">Tariffa</th>
+
+                    <th class="text-center">Quantita</th>
+                    <th class="text-right">Totale Iva</th>
+                    <th class="text-right">Totale + Iva</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>Tariffa base</td>
+                    <td class="text-right">{{ reservation.getWeekPrice }} </td>
+                    <td>€/week</td>
+                    <td class="text-center">{{ reservation.getDayCount }} notti </td>
+                    <td class="text-right">{{ reservation.iva }} €</td>
+                    <td class="text-right">{{ reservation.alloggioTotal }} €</td>
+                </tr>
+
+                {% for service in reservation.servizi_opzional.all %}
+                    <tr>
+                        <td>{{ service.original_service.nome }}</td>
+                        <td class="text-right">{{ service.costo }}</td>
+                        <td> €/{{ service.fattore_tempo }}gg</td>
+                        <td class="text-center">{{ service.count }}</td>
+                        <td class="text-right">{{ service.iva }} €</td>
+                        <td class="text-right">{{ service.getTotal }} €</td>
+                    </tr>
+                {% endfor %}
+
+                {#                <tr>#}
+                {#                  <th scope="row">1</th>#}
+                {#                  <td>Mark</td>#}
+                {#                  <td>Otto</td>#}
+                {#                  <td>@mdo</td>#}
+                {#                </tr>#}
+                {#                <tr>#}
+                {#                  <th scope="row">2</th>#}
+                {#                  <td>Jacob</td>#}
+                {#                  <td>Thornton</td>#}
+                {#                  <td>@fat</td>#}
+                {#                </tr>#}
+                {#                <tr>#}
+                {#                  <th scope="row">3</th>#}
+                {#                  <td>Larry</td>#}
+                {#                  <td>the Bird</td>#}
+                {#                  <td>@twitter</td>#}
+                {#                </tr>#}
+                </tbody>
+            </table>
+
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class=" col-md-12">
+            <div class="clearfix bg-green panel-body" >
+
+
+                <div class="row">
+                    <div class="col-md-6 border-right">
+
+                        <div class="mBottom20 hidden-print" ng-init='paymentType="bonifico"'>
+                            <h4>Metodo di pagamento</h4>
+                            <br>
+                            <br>
+                            <span>
+                                <input type="radio" ng-model="paymentType" value="bonifico">
+                                Paga con bonifico bancario
+                              </span>
+                            <br/><br>
+                          <span>
+                            <input type="radio" ng-model="paymentType" value="vaglia">
+                            Paga con vaglia postale
+                          </span><br/>
+
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <div class="">
+                            <h4>Estremi di pagamento</h4>
+                            <div ng-if="paymentType=='bonifico'">
+                                Banca Popolare di Milano:<br>
+IBAN IT02 0987 5429 000000003795<br>
+Indicare il codice di prenotazione nella causale di pagamento<br>
+<br>
+                            </div>
+                            <div ng-if="paymentType=='vaglia'">
+                                VAGLIA POSTALE ORDINARIO (non on line):<br>
+                                Cooperativa iseipetali<br>
+                                Via xxxxx 00<br>
+                                20100 Milano (MI)<br>
+                            </div>
+                            <br>
+                            La prenotazione rimane bloccata per 10gg
+fino al ricevimento del denaro.
+
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class=" col-md-12">
+            <div class="clearfix bg-light-green panel-body" >
+
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <button class="btn btn-block btn-yellow hidden-print" onclick="window.print();">
+                            <b class="h3" style="font-weight: 700;">Stampa prenotazione</b>
+                        </button>
+
+{#                        <div class="">#}
+{#                            <h4>Estremi di pagamento</h4>#}
+{#                            <div ng-if="paymentType=='bonifico'">#}
+{#                                Bonifico#}
+{#                            </div>#}
+{#                            <div ng-if="paymentType=='vaglia'">#}
+{#                                Vaglia#}
+{#                            </div>#}
+{#                        </div>#}
+{#                        <div class="">#}
+{#                            <h4>Metodo di pagamento</h4>#}
+{#                            <span>#}
+{#                                <input type="radio" ng-model="paymentType" value="bonifico">#}
+{#                                Paga con bonifico bancario#}
+{#                              </span>#}
+{#                            <br/>#}
+{#                          <span>#}
+{#                            <input type="radio" ng-model="paymentType" value="vaglia">#}
+{#                            Paga con vaglia postale#}
+{#                          </span><br/>#}
+{##}
+{##}
+{#                        </div>#}
+
+                    </div>
+
+                    <div class="col-md-6 ">
+                        <div class="">
+                            <h1 style="border-bottom: 3px solid #fff">Totale: {{ reservation.getTotal }} Euro </h1>
+                            <h4> Caparra: {{ reservation.getCaparra }} Euro</h4>
+                        </div>
+                    </div>
+
+            </div>
+        </div>
+    </div>
+
+    {##}
+    {#    <h1>Reservation: {{ reservation }}</h1>#}
+    {##}
+    {#    <pre>{{ reservation_json }}</pre>#}
+    {##}
+    {#    <pre>#}
+    {#    <ul>#}
+    {#        <li>{{ reservation.created }}</li>#}
+    {#        <li>{{ reservation.modified }}</li>#}
+    {#        <li>{{ reservation.user }}</li>#}
+    {#        <li>{{ reservation.session }}</li>#}
+    {##}
+    {#        <li>{{ reservation.alloggio }}</li>#}
+    {#        <li>{{ reservation.event }}</li>#}
+    {#        <li>{{ reservation.numero_ospiti }}</li>#}
+    {#        <li>{{ reservation.servizi_opzional.all }}</li>#}
+    {#        <li>{{ reservation.status }}</li>#}
+    {#        <li>{{ reservation.total }}</li>#}
+    {#    </ul>#}
+    {#    </pre>#}
+
+
+
+
+
+    {#    <ul>#}
+    {#    {% for s in alloggio.servizi_opzionali.all %}#}
+    {#        <li>s</li>#}
+    {#    {% endfor %}#}
+    {#    </ul>#}
+
+    {#    <div ng-controller='alloggioPreviewCtrl' ng-init='alloggio_id={{ alloggio.id }} ; alloggio={{alloggio_json}}' ng-cloak>#}
+    {##}
+    {##}
+    {##}
+    {##}
+    {#        <div class="row">#}
+    {#            <div class="panel panel-default">#}
+    {#                <div class="panel-body">#}
+    {##}
+    {#                    <div class="row">#}
+    {#                        <div class="col-md-4" ng-cloak>#}
+    {#                            Check-In#}
+    {#                            <p class="input-group">#}
+    {#                                <input type="text" class="form-control" ng-init='filters.checkin.open=false' ng-model='filters.checkin.date' max-date='filters.checkout.date' is-open="filters.checkin.open" datepicker-popup='{% verbatim %}{{datepicker.format}}{% endverbatim %}' />#}
+    {#                                  <span class="input-group-btn">#}
+    {#                                    <button type="button" class="btn btn-default" ng-click="openDatepicker($event,'in')">#}
+    {#                                        <i class="glyphicon glyphicon-calendar"></i></button>#}
+    {#                                  </span>#}
+    {#                            </p>#}
+    {##}
+    {#                            Check-Out#}
+    {#                            <p class="input-group">#}
+    {#                                <input type="text" class="form-control" ng-init='filters.checkout.open=false' ng-model='filters.checkout.date' min-date='filters.checkin.date' is-open="filters.checkout.open" datepicker-popup='{% verbatim %}{{datepicker.format}}{% endverbatim %}'/>#}
+    {#                              <span class="input-group-btn">#}
+    {#                                <button type="button" class="btn btn-default" ng-click="openDatepicker($event,'out')">#}
+    {#                                    <i class="glyphicon glyphicon-calendar"></i></button>#}
+    {#                              </span>#}
+    {#                            </p>#}
+    {##}
+    {#                            Numero di ospiti#}
+    {#                            <select class="form-control" ng-model='filters.numero_ospiti' ng-options="n for n in [] | range:1:{{ alloggio.postiletto|add:1 }}">#}
+    {#                            </select>#}
+    {##}
+    {#                        </div>#}
+    {#                        <div class="col-md-4">#}
+    {#                            <div class="panel"  ng-if='reservation.isAvailable'>#}
+    {#                                <h5>Caparra: {% verbatim %} {{ reservation.quote.caparra }}{% endverbatim %}</h5>#}
+    {#                                <h4>Totale: {% verbatim %} {{ reservation.quote.total }} {% endverbatim %}</h4>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                        <div class="col-md-4">#}
+    {##}
+    {#                            <div class="alert alert-danger" ng-if='!reservation.isAvailable && reservation.error_message' role="alert">#}
+    {#                               {% verbatim %} {{ reservation.error_message }} {% endverbatim %}#}
+    {#                            </div>#}
+    {##}
+    {#                            <button class="btn btn-block btn-success" style="height: 100%" ng-disabled='!reservation.isAvailable' ng-click='requestBooking()'>#}
+    {#                                Prenota Ora#}
+    {#                            </button>#}
+    {#                        </div>#}
+    {#                        <div class="col-md-12" ng-if='reservation.isAvailable'>#}
+    {#                            <hr>#}
+    {#                            <div class="panel panel-default">#}
+    {#                                <div class="panel-body">#}
+    {#                                    <h5>Vuoi aggiungere dei servizi?</h5>#}
+    {##}
+    {#                                    {% verbatim %}#}
+    {#                                    <ul>#}
+    {#                                        <li ng-repeat="service in alloggio.servizi_opzionali">#}
+    {#                                          <label class="checkbox" for="{{service.id}}">#}
+    {#                                            <input type="checkbox" value="{{service.id}}" ng-model="service.selected" ng-click='updateQuote()' name="group" id="{{service.id}}" />#}
+    {#                                            {{service.nome}}#}
+    {#                                          </label>#}
+    {#                                        </li>#}
+    {#                                    </ul>#}
+    {#                                    {% endverbatim %}#}
+    {#                                </div>#}
+    {#                            </div>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+    {##}
+    {##}
+    {##}
+    {#    <hr>#}
+    {#    {% verbatim %}#}
+    {#    <pre>{{ reservation |json}}</pre>#}
+    {#    <pre>{{ filters |json}}</pre>#}
+    {#        <pre>{{ alloggio |json}}</pre>#}
+    {#    {% endverbatim %}#}
+    {##}
+    {##}
+    {#    </div>#}
+    {% endangular %}
+
+
+{% endblock %}
+
+
+{% block compress_footer_js %}
+    {{ block.super }}
+    {#    <script src="{{ STATIC_URL }}js/angular-app/services/alloggio-reservation-manager.js" type="text/javascript" charset="utf-8"></script>#}
+    {#    <script src="{{ STATIC_URL }}js/angular-app/controller/alloggio-preview-controller.js" type="text/javascript" charset="utf-8"></script>#}
+
+{% endblock %}

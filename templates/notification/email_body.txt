@@ -1,0 +1,9 @@
+{% load i18n %}{% load url from future %}{% url "settings" as notices_url %}{% blocktrans %}You have received the following notice from {{ current_site }}:
+
+
+
+
+To see other notices or change how you receive notifications, please go to {{ default_http_protocol }}://{{ current_site }}{{ notices_url }}
+{% endblocktrans %}
+
+

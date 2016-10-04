@@ -1,0 +1,6 @@
+.idea
+*.pyc
+*.DS_Store
+static/*
+db.sqlite3
+logs/*

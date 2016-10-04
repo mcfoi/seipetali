@@ -1,0 +1,61 @@
+{% extends 'layout/base.html' %}
+
+
+{% block title %}
+    {{ block.super }}
+   Search
+{% endblock %}
+
+{% block ng_templates %}
+{#    {% include 'ng-template/alloggio-search/angular-alloggio-search.html' %}#}
+{% endblock %}
+
+
+{% block head_css %}
+    {{ block.super }}
+    <style>
+        .angular-google-map-container { min-height: 400px;height: 100% }
+
+         .angular-google-map {
+
+            height: 100%;
+          position: absolute;
+          width: 100%;
+         }
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <h5>
+
+    PER VERIFICARE LA DISPONIBILITA' E IL PREZZO DELL'ALLOGGIO CONTATTA IL
+NOSTRO <a href="tel:800178507"> <span style="color: #00A000">NUMERO VERDE 800.178.507</span></a> OPPURE DA CELLULARE 0236516102 DALLE 10
+ALLE
+19
+    </h5>
+       <ng-alloggio-search></ng-alloggio-search>
+
+
+
+
+{% endblock %}
+
+
+
+{% block compress_footer_js %}
+    {{ block.super }}
+
+{#                ANGULAR GOOGLE MAPS#}
+    <script src="{{ STATIC_URL }}bower_components/lodash/dist/lodash.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}bower_components/angular-google-maps/dist/angular-google-maps.js" type="text/javascript" charset="utf-8"></script>
+
+    <script src="{{ STATIC_URL }}js/angular-app/directive/angular-alloggio-search.js" type="text/javascript" charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}js/angular-app/directive/angular-alloggio-card.js" type="text/javascript" charset="utf-8"></script>
+
+
+{% endblock %}
+
+ {% block angular_app_js %}
+    <script src="{{ STATIC_URL }}js/angular-app/app_search.js" type="text/javascript" charset="utf-8"></script>
+{% endblock %}

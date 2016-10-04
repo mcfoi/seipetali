@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+
+{% load cms_tags sekizai_tags %}
+{% load menu_tags %}
+
+
+{% block title %}
+    {% page_attribute "page_title" %}
+{% endblock %}
+
+
+
+{% block content %}
+
+
+
+    {#    {% show_menu %}#}
+    {#    show_breadcrumb:{% show_breadcrumb %}#}
+
+
+
+    {#    <div class="container">#}
+    <div class="row">
+        <div class="col-md-2">
+            {#            <ul>#}
+            {#                {% show_menu 0 100 100 100 %}#}
+            {#            </ul>#}
+            {#            #}
+            {#            <hr>#}
+            <ul class="nav nav-pills nav-stacked">
+                {% show_menu_below_id "seipetali" %}
+            </ul>
+            {#            <hr>#}
+            {#            <ul>#}
+            {#                {% show_sub_menu 1 %}#}
+            {#            </ul>#}
+
+            {% placeholder panel_content %}
+            {% block panel_content %}{% endblock panel_content %}
+
+
+
+	    <div class='hidden-xs'>
+            {% include 'common/_mailchimp_form.html' %}
+	    </div>
+
+
+        </div>
+        <div class="col-md-10">
+            {% placeholder main_content %}
+            {% block main_content %}{% endblock main_content %}
+        </div>
+
+	<div class="col-md-2 visible-xs">
+            {% include 'common/_mailchimp_form.html' %}
+	</div>
+
+    </div>
+
+
+    {#    </div>#}
+
+
+{% endblock content %}
+

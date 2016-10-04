@@ -1,0 +1,578 @@
+.faq-intestazione-gruppi {
+}
+
+.faq-intestazione-gruppi a {
+    display: inline-block;
+    padding: 10px;
+    border: 2px solid #00b3ee;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+input[type=file] {
+    margin: auto;
+    color: transparent;
+    /* padding-right: 174px; */
+    /* border: 1px solid red; */
+    text-align: center;
+    width: 100px;
+    background-color: rgb(135, 199, 92);
+    /* content: ""; */
+    padding-top: 26px;
+    height: 25px;
+    opacity: 1;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+
+}
+
+input[type=file]:after {
+    content: "Upload File";
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    color: black;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    padding: 4px;
+}
+
+.alloggio-result-item .thumbnail {
+    border-color: transparent;
+    border-bottom-color: red;
+    border-right-color: red;
+    border-radius: 13px;
+    border-bottom-width: 3px;
+    border-left-width: 0px;
+    margin-bottom: 2px;
+}
+
+/*.border-between > div > [class*='col-']:before , .border-between  > [class*='col-']:before{*/
+/*background: red;*/
+/*bottom: 0;*/
+/*content: " ";*/
+/*left: 0;*/
+/*position: absolute;*/
+/*width: 1px;*/
+/*top: 0;*/
+/*}*/
+
+/*.border-between > div > [class*='col-']:first-child:before , .border-between  > [class*='col-']:first-child:before {*/
+/*display: none;*/
+/*}*/
+
+/*.row.vdivide > [class*='col-']:not(:last-child):after , .row.vdivide  > div > [class*='col-']:not(:last-child):after{*/
+/*background: #e0e0e0;*/
+/*width: 1px;*/
+/*content: "";*/
+/*display:block;*/
+/*position: absolute;*/
+/*top:0;*/
+/*bottom: 0;*/
+/*right: 0;*/
+/*min-height: 270px;*/
+/*}*/
+
+/*.row.vdivide {*/
+/*overflow: hidden;*/
+/*}*/
+
+.border-left, .border-right {
+    position: relative;
+}
+
+.border-left:before, .border-right:before {
+    content: "";
+    position: absolute;
+    width: 0px;
+    border-left: 1px solid #d3d3d3;
+    height: 100%;
+    top: 0px;
+}
+
+.border-left:before {
+    left: -0px;
+}
+
+.border-right:before {
+    right: -1px;
+}
+
+.jumboPrice {
+    padding: 30px 10px;
+}
+
+.jumboPrice .btn.btn-block {
+    height: 100px;
+}
+
+.jumboPrice .totalPrice {
+    border-bottom: 3px solid white;
+}
+
+html, body {
+    height: 100%;
+    min-height: 100% !important;
+}
+
+body {
+    position: relative;
+    overflow: scroll;
+    /*padding-top: 90px;*/
+}
+
+.wrapper-body {
+    padding-bottom: 95px;
+}
+
+footer {
+    /*position: absolute;*/
+    /*bottom: 0;*/
+    /*width: 100%;*/
+    /*height: 95px;*/
+    /*background: rgb(0,159,227);*/
+    /*text-align: center;*/
+    padding-top: 0px;
+    /*padding-bottom: 20px;*/
+}
+
+.site-wrapper {
+    min-height: 100%;
+    position: relative;
+    overflow: hidden;
+    padding-top: 90px;
+
+}
+@media print {
+  .site-wrapper {
+        padding-top: 0px;
+
+    }
+    .wrapper-body {
+        padding-bottom: 40px;
+    }
+}
+
+.bs-docs-footer-links {
+    padding-left: 0;
+    margin-top: 0px;
+}
+
+.bs-docs-footer-links li {
+    display: inline;
+    padding: 0 2px;
+}
+
+.faq-nav {
+    margin-right: -15px;
+    text-align: right;
+    margin-top: 20px;
+}
+
+.faq-nav.nav-pills > li > a {
+    border-radius: 10px 0px 0px 10px;
+    display: inline-block;
+    color: white;
+    background-color: #f3aa20;
+    padding: 3px 15px;
+
+}
+
+.faq-nav.nav-pills > li.active > a, .faq-nav.nav-pills > li.active > a:hover, .faq-nav.nav-pills > li.active > a:focus {
+    color: #fff;
+    background-color: red;
+}
+
+.navbar {
+
+    border: 0px solid transparent;
+}
+
+.navbar-brand, .navbar-brand:hover {
+    padding: 7px 0px;
+    background-color: white;
+    height: 70px;
+}
+
+
+.navbar-brand img {
+    width: 95px;
+    margin-top: 5px;
+    float: left;
+}
+@media screen and (min-width: 992px) {
+    .navbar-brand img {
+        width: 130px;
+        margin-top: 0px;
+    }
+    .navbar-brand, .navbar-brand:hover {
+        padding: 7px 40px;
+    }
+}
+
+
+.navbar-default .navbar-nav > li > a {
+    line-height: 1em;
+}
+.navbar-default .navbar-nav > li.evidence {
+        background-color: #f3aa20;
+}
+
+@media screen and (min-width: 768px) {
+
+    .navbar-default .navbar-nav > li > a {
+        height: 68px;
+        display: table-cell;
+        vertical-align: middle;
+    }
+}
+
+
+
+.language-list > li.lang {
+    cursor: pointer;
+}
+
+.language-list > li.selected, .language-list > li.active >a {
+    cursor: default;
+    color: rgb(243,170,32);
+}
+
+.nav.navbar-nav >li:after {
+    content: "";
+    width: 1px;
+    background-color: white;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.nav.navbar-nav >li:first-child:before {
+    content: "";
+    width: 1px;
+    background-color: white;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* enable absolute positioning */
+.inner-addon {
+    position: relative;
+}
+
+/* style glyph */
+.inner-addon .glyphicon {
+    position: absolute;
+    padding: 10px;
+    /*pointer-events: none;*/
+    /*line-height: 12px;*/
+}
+
+/* align glyph */
+.left-addon .glyphicon.left {
+    left: 0px;
+}
+
+.right-addon .glyphicon.right {
+    right: 0px;
+}
+
+/* add padding  */
+.left-addon input {
+    padding-left: 30px;
+}
+
+.right-addon input {
+    padding-right: 30px;
+}
+
+/*TIME*/
+time.icon {
+    font-size: 1em; /* change icon size */
+    display: block;
+    position: relative;
+    width: 7em;
+    height: 7em;
+    background-color: #fff;
+    margin: 1em auto;
+    border-radius: 0.6em;
+    /*box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff, 0 5px 0 #bdbdbd, 0 0 0 1px #bdbdbd;*/
+    box-shadow: 0 1px 0 #bdbdbd, 0 2px 0 #fff, 0 3px 0 #bdbdbd, 0 4px 0 #fff;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-transform: rotate(0deg) skewY(0deg);
+    -webkit-transform-origin: 50% 10%;
+    transform-origin: 50% 10%;
+}
+
+time.icon * {
+    display: block;
+    width: 100%;
+    font-size: 1em;
+    font-weight: bold;
+    font-style: normal;
+    text-align: center;
+}
+
+time.icon strong {
+    position: absolute;
+    top: 0;
+    padding: 0.4em 0;
+    color: #fff;
+    background-color: #fd9f1b;
+    border-bottom: 1px dashed #f37302;
+    box-shadow: 0 2px 0 #fd9f1b;
+    line-height: 0.9em;
+}
+
+time.icon em {
+    position: absolute;
+    bottom: 0.3em;
+    color: #fd9f1b;
+}
+
+time.icon span {
+    width: 100%;
+    font-size: 2.8em;
+    letter-spacing: -0.05em;
+    padding-top: 0.8em;
+    color: #2f2f2f;
+}
+
+/*TIME ANIMATION*/
+
+time.icon:hover, time.icon:focus {
+    -webkit-animation: swing 0.6s ease-out;
+    animation: swing 0.6s ease-out;
+}
+
+@-webkit-keyframes swing {
+    0% {
+        -webkit-transform: rotate(0deg) skewY(0deg);
+    }
+    20% {
+        -webkit-transform: rotate(12deg) skewY(4deg);
+    }
+    60% {
+        -webkit-transform: rotate(-9deg) skewY(-3deg);
+    }
+    60% {
+        -webkit-transform: rotate(-9deg) skewY(-3deg);
+    }
+    60% {
+        -webkit-transform: rotate(-9deg) skewY(-3deg);
+    }
+    80% {
+        -webkit-transform: rotate(6deg) skewY(-2deg);
+    }
+    100% {
+        -webkit-transform: rotate(0deg) skewY(0deg);
+    }
+}
+
+@keyframes swing {
+    0% {
+        transform: rotate(0deg) skewY(0deg);
+    }
+    20% {
+        transform: rotate(12deg) skewY(4deg);
+    }
+    60% {
+        transform: rotate(-9deg) skewY(-3deg);
+    }
+    80% {
+        transform: rotate(6deg) skewY(-2deg);
+    }
+    100% {
+        transform: rotate(0deg) skewY(0deg);
+    }
+}
+
+/*CMS FIX*/
+img.filer_image {
+    max-width: 100%;
+}
+
+footer .footer-logo-comune,footer .footer-logo  {
+    float: left;
+    width: 100px;
+    /*margin-top: -25px;*/
+}
+
+footer .footer-logo-comune {
+    float: none;
+    padding: 10px;
+
+}
+
+footer .footer-logo-seipetali {
+    float: left;
+    width: 100px;
+    margin-left: 30px;
+}
+
+footer .col-right {
+margin-top: 20px;
+}
+
+@media screen and (max-width: 992px) {
+    footer .footer-logo-seipetali {
+        float: right;
+        margin-top: -50px;
+    }
+    footer .footer-logo-casadelledonne {
+
+        margin-top: -50px;
+    }
+
+    .wrapper-body {
+    padding-bottom: 220px;
+}
+
+    footer {
+        height: 220px;
+    }
+}
+@media screen and (max-width: 768px) {
+
+    .wrapper-body {
+        padding-bottom: 230px;
+    }
+
+    footer {
+        height: 230px;
+    }
+}
+
+@media screen and (max-width: 450px) {
+
+    footer .footer-logo-casadelledonne {
+
+       width: 50px;
+    }
+}
+
+
+
+
+.left {
+    float: left;
+}
+
+.right{
+    float: right;
+}
+
+img.left{
+    margin-right: 20px;
+}
+img.right{
+    margin-left: 20px;
+}
+
+
+.mTop0 {
+    margin-top: 0px;
+}
+.mTop20{
+    margin-top: 20px;
+}
+.mBottom20 {
+    margin-bottom: 20px;
+}
+.pTop0 {
+    padding-top: 0px;
+}
+
+
+.servizi-image-bg{
+  background-image: url('/static/images/layout/bg_servizi_images.png');
+  background-size: 273px;
+  background-repeat: no-repeat;
+  background-position: 100% 100%;
+}
+
+.reservation-detail-contatti {
+
+}
+.reservation-detail-costi{
+    margin-bottom: 20px;
+    margin-top: 20px;
+    min-height: 250px
+}
+
+@media print {
+    time.icon {
+        margin: 0px auto;
+        height: 6em;
+    }
+    time.icon span {
+      width: 100%;
+      font-size: 1.8em;
+      letter-spacing: -0.05em;
+      padding-top: 0.8em;
+      color: #2f2f2f;
+    }
+    time.icon em {
+      position: absolute;
+      bottom: 0px;
+      color: #fd9f1b;
+    }
+
+  .reservation-detail-contatti  dl{
+      margin-bottom: 0px;
+
+    }
+
+  .reservation-detail-contatti .panel-body{
+      padding-top:0px;
+  }
+    .reservation-detail-costi{
+        margin-bottom: 0px;
+        margin-top: 0px;
+        min-height: 0px
+    }
+    .reservation-detail-costi .well{
+        padding-top: 0px;
+          margin-bottom: 0px;
+          padding-bottom: 0px;
+    }
+
+    .reservation-detail-riepilogo img{
+        width:75px;
+
+    }
+    .reservation-detail-riepilogo > .row > * {
+        border: 1px solid grey;
+        min-height: 165px;
+    }
+}
+
+
+.card-prezzo {
+  position: absolute;
+  top: -25px;
+  right: -16px;
+    /*background-color: darkred;*/
+    color: white;
+    width: 50px;
+      height: 50px;
+      background-size: cover;
+      line-height: 50px;
+      text-align: center;
+      font-weight: bold;
+    background-image: url('/static/images/layout/bg_prezzo.png');
+}
+
+.gm-style-iw > div{
+    overflow: visible !important;
+
+}
+.navbar-fixed-top{

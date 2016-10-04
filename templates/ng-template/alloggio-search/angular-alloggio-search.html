@@ -1,0 +1,158 @@
+{#<script type="text/ng-template" id="angular-alloggio-search.html">#}
+{% load icanhaz_tags %}
+{% load i18n %}
+
+{% angular %}
+    <div class="row bg-yellow" >
+        <div class="col-sm-2 text-center">
+            {#                <pre ng-click="openDatepicker($event,'in')" style="font-size:9px">[[ filters | json]]</pre>#}
+            <h5>{% trans "Cerca una sistemazione temporanea a Milano" %}</h5>
+            <hr>
+        </div>
+
+        <div class="col-sm-10" style="display:none">
+
+            <div class="row" >
+                <div class="col-md-4">
+                    <h5>{% trans "Check-In" %}</h5>
+                    <p class="input-group">
+                        <input type="text" class="form-control" ng-model='filters.checkin.date'
+                                {#                         max-date='filters.checkout.date' #}
+                               is-open="filters.checkin.open" ng-focus="filters.checkin.open=false" datepicker-popup='[[datepicker.format]]' value='peppe'/>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openDatepicker($event,'in')">
+                        <i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                    </p>
+                    </div>
+                <div class="col-md-4">
+
+                    <h5>{% trans "Check-Out" %}</h5>
+                    <p class="input-group">
+                        <input type="text" class="form-control" ng-model='filters.checkout.date'
+                                {#                         min-date='filters.checkin.date'  #}
+                               is-open="filters.checkout.open" ng-focus="filters.checkout.open=false" datepicker-popup='[[datepicker.format]]'/>
+                  <span class="input-group-btn">
+                    <button type="button" class="btn btn-default" ng-click="openDatepicker($event,'out')">
+                        <i class="glyphicon glyphicon-calendar"></i></button>
+                  </span>
+                    </p>
+
+                </div>
+                <div class="col-md-3">
+                    <h5>{% trans "Numero di ospiti" %}</h5>
+                    <p class="input-group">
+                        <input type="number" class="form-control" ng-model='filters.numero_ospiti'/>
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <div class="row bg-yellow" style=" padding-top: 20px ; padding-bottom: 20px">
+
+
+        <div class="col-md-2 hidden-xs hidden-sm" id='leftCol' style="overflow: scroll;padding-top: 25px; display:none">
+
+            <div ng-repeat='alloggio in searchResult' class="alloggio-result-item">
+                <ng-alloggio-card alloggio="alloggio" filters='filters' ng-click='click(alloggio)'></ng-alloggio-card>
+            </div>
+
+            <p ng-if="!searchResult.length">{% trans "Nessun risultato" %}</p>
+
+            {#                 <pre>[[ searchMarkers | json]]</pre>#}
+
+        </div>
+
+        <div class="col-md-12" id='mapCol'>
+            <div style="position: relative">
+
+
+                <ui-gmap-google-map id='searchMap' center='map.center' zoom='map.zoom' bounds="map.bounds" class="embed-responsive embed-responsive-16by9">
+
+                    {#                    <ui-gmap-marker coords="marker.coords" options="marker.options" events="marker.events" idkey="marker.id">#}
+                    {#                    </ui-gmap-marker>#}
+
+
+                    {#                    <ui-gmap-markers models="searchMarkers" labelContent="'self'" idkey="'id'" coords="'self'" options="'self'" events='searchMarkerEvents' click="'onMarkerClicked'" labelVisible="true">#}
+                    {#                        <ui-gmap-windows show="'showWindow'" closeClick="'closeClick'" ng-cloak>#}
+                    {#                            <div>#}
+                    {##}
+                    {#                            <p>Dynamic Marker created via a delay!</p>#}
+                    {##}
+                    {##}
+                    {##}
+                    {#                            <p ng-non-bindable>This is an info window at [[ latitude | number:4 ]], [[ longitude | number:4 ]]!</p>#}
+                    {##}
+                    {#                            <p class="muted">My marker will stay open when the window is popped up!</p>#}
+                    {#                            </div>#}
+                    {#                        </ui-gmap-windows>#}
+                    {#                    </ui-gmap-markers>#}
+
+
+                    {#                    <ui-gmap-markers models="searchMarkers" labelContent="'self'" idkey="'id'" coords="'self'" options="'self'" events='searchMarkerEvents' click="'onMarkerClicked'" labelVisible="true">#}
+                    {#                        <ui-gmap-windows show="'showWindow'" closeClick="'closeClick'" ng-cloak>#}
+                    {#                            <div >#}
+                    {##}
+                    {#                                <div  >#}
+                    {#                                    [[alloggio.descrizione_breve]]#}
+                    {#                                    <div ng-init='alloggio=self'>#}
+                    {##}
+                    {#                                    <ng-alloggio-card  alloggio="alloggio" filters='$parent.filters' ng-click='click(alloggio)'></ng-alloggio-card>#}
+                    {#                                    </div>#}
+                    {#                                </div>#}
+                    {##}
+                    {##}
+                    {#                            <p>Dynamic Marker created via a delay! [[self.alloggio.title]]</p>#}
+                    {##}
+                    {##}
+                    {##}
+                    {#                            <p ng-non-bindable>[[alloggio]]This is an info window at [[ latitude | number:4 ]], [[ longitude | number:4 ]]!</p>#}
+                    {##}
+                    {#                            <p class="muted">My marker will stay open when the window is popped up!</p>#}
+                    {#                            </div>#}
+                    {#                        </ui-gmap-windows>#}
+                    {#                    </ui-gmap-markers>#}
+
+
+                    {#                    <ui-gmap-marker ng-repeat="alloggio in searchResult"  model="alloggio" idkey="alloggio.id" click="onClick" coords="{latitude:alloggio.address.latitude,longitude:alloggio.address.longitude}" options="{labelContent:alloggio.descrizione_breve,labelAnchor: '0 0'}">#}
+                    {#                      <ui-gmap-window options="windowOptions" closeclick="closeClick()">#}
+                    {#                        <div >#}
+                    {#                            <!--<pre style="font-size: 5px">[[ alloggio | json ]]</pre>-->#}
+                    {#                            <ng-alloggio-card  alloggio="$parent.alloggio" filters='$parent.filters' ng-click='click(alloggio)'></ng-alloggio-card>#}
+                    {#                        </div>#}
+                    {#                      </ui-gmap-window>#}
+                    {#                    </ui-gmap-marker>#}
+
+
+                    {#                    Questo funziona ma al drag si chide il popup#}
+                    <ui-gmap-marker ng-repeat="m in searchMarkers" model="m.alloggio" idkey="m.alloggio.id" click="onClick" coords="{latitude:m.alloggio.address.latitude,longitude:m.alloggio.address.longitude}"
+                            {#                                    options="{labelContent:m.alloggio.descrizione_breve,labelAnchor: '0 0'}"#}
+                            >
+                        <ui-gmap-window options="windowOptions" closeclick="closeClick()">
+                            <div>
+
+                                <ng-alloggio-card alloggio="$parent.m.alloggio"  filters='$parent.filters' ng-click='click(m.alloggio)'></ng-alloggio-card>
+                            </div>
+                        </ui-gmap-window>
+                    </ui-gmap-marker>
+
+
+                </ui-gmap-google-map>
+
+            </div>
+
+        </div>
+
+
+        {#            <pre>[[ searchMarkers | json]]</pre>#}
+        {#            <pre>[[ map | json]]</pre>#}
+
+    </div>
+
+{% endangular %}
+{#</script>#}

@@ -1,0 +1,40 @@
+{% extends 'layout/base.html' %}
+{% load crispy_forms_tags  cms_tags menu_tags %}
+
+
+{% block content %}
+    <div class="text-center">
+
+    <h1>Completa il profilo</h1>
+
+    <h3>Per darti la possibilita di inserire un'alloggio abbiamo bisogno di salvare i tuoi recapiti e informarti sui termini e le condizioni di utilizzo.</h3>
+    </div>
+
+ <form action="" method="post" class="uniForm panel ">
+        {% csrf_token %}
+
+
+        {% if request.user.is_superuser %}
+            <div class="checkbox">
+            <label>
+
+              {{ form.active }} Annucio Attivo
+            </label>
+          </div>
+
+        {% endif %}
+
+
+    <div class="well-default well">
+
+
+    {% crispy form  %}
+
+    </div>
+
+
+
+
+    <input class='btn btn-lg btn-success btn-block' type="submit" value="{% if form.instance.id %}Aggiorna profilo {% else %}Salva profilo {% endif %} " />
+ </form>
+{% endblock %}

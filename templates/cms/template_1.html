@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+
+{% load cms_tags sekizai_tags %}
+{% load menu_tags %}
+
+
+{% block title %}
+    {% page_attribute "page_title" %}
+{% endblock %}
+
+
+
+{% block content %}
+
+
+
+{#    {% show_menu %}#}
+
+
+{#    show_breadcrumb:{% show_breadcrumb %}#}
+
+
+    {% placeholder base_content %}
+    {% placeholder base_content_2 %}
+
+    <div class="container">
+
+    {% block base_content %}{% endblock base_content %}
+
+    {% block base_content_2 %}{% endblock base_content_2 %}
+    </div>
+
+
+{% endblock content %}
+

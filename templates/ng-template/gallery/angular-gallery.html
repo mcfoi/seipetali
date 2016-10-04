@@ -1,0 +1,222 @@
+{% load icanhaz_tags %}
+{% load i18n %}
+
+    {% angular %}
+    <div class="">
+        <h1>Image gallery</h1>
+
+
+        <!--
+                    <div style="width:200px; height:200px; border: 1px dotted red"
+            ng-file-drop
+            ng-file-model="files"
+            ng-file-change="fileDropped($files, $event, $rejectedFiles)"
+            ng-multiple="true"
+            accept="image/*"
+            ng-model="files"
+
+            allowDir="true"
+            dragOverClass="{accept:'acceptClass', reject:'rejectClass', delay:100}"
+
+            dropAvailable="dropSupported"
+
+            stopPropagation="false"
+            hideOnDropNotAvailable="false" >
+
+        Drop files here
+        </div>
+        -->
+
+
+        <!--
+                        <div class="up-buttons">
+                            <div ng-file-select ng-model="files" class="upload-button"
+                                   ng-file-change="upload(files)" ng-multiple="true" ng-accept="'image/*,application/pdf'" tabindex="0">Attach an Image or PDF</div><br/>
+                            <button ng-file-select ng-model="files"
+                                    ng-file-change="upload(files)" ng-multiple="true">Attach Any File</button>
+                        </div>
+        -->
+
+
+        <input hidden="hidden" name="gallery" ng-if='gallery' value="[[ gallery.id ]]">
+
+        <div class='row' id="gallery-sortable-container">
+            <div as-sortable="dragControlListeners" ng-model="photos">
+                <div ng-repeat="photo in photos" as-sortable-item ng-class="{'col-md-3': $first}" class="col-md-3 ">
+                    <div as-sortable-item-handle>
+                        <div class="thumbnail embed-responsive embed-responsive-16by9">
+
+                            <img width="100%" ng-show="photo.image" ng-src="[[photo.thumbnail_url]]">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+
+                <div class="col-md-3" ng-class="{'col-md-6': !photos.length}">
+
+                    <div class="thumbnail embed-responsive embed-responsive-16by9 text-center" style=" border: 1px dotted blue" multiple nv-file-drop uploader="uploader">
+                           <!--
+                        <div style="width:200px; height:200px; border: 1px dotted red" nv-file-drop ng-model="files" class="drop-box"
+                            drag-over-class="{accept:'dragover', reject:'dragover-err', delay:100}"
+                            ng-multiple="true" allow-dir="true" accept="image/*" ng-file-change="upload(files)">
+                                Drop Images or PDFs<div>here</div>
+                        </div>
+                        <div ng-no-file-drop class="drop-box">File Farg&Drop not supported on your browser</div>
+                        -->
+                        <div style="padding: 30px 20px;">
+
+                            <h5>Carica le foto piu belle del tuo alloggio.</h5>
+                            <p class="text-muted"> Trascina la foto o clicca qui sotto</p>
+                            <input type="file" nv-file-select="" uploader="uploader" multiple/><br/>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-3" ng-if="photos.length < 2">
+                    <div class="thumbnail embed-responsive embed-responsive-16by9" style="background-color: rgba(0, 0, 0, 0.21);">
+                        <h1 style="
+                            text-align: center;
+                            line-height: 100%;
+                            /* margin: auto; */
+                            padding: 30px;
+                        ">+
+                        </h1>
+                    </div>
+                </div>
+                <div class="col-md-3" ng-if="photos.length < 1">
+                    <div class="thumbnail embed-responsive embed-responsive-16by9" style="background-color: rgba(0, 0, 0, 0.21);">
+                        <h1 style="
+                            text-align: center;
+                            line-height: 100%;
+                            /* margin: auto; */
+                            padding: 30px;
+                        ">+
+                        </h1>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
+
+        </div>
+        <div class="row">
+
+
+
+
+
+            <div ng-if='debug' class="col-md-12" style="margin-bottom: 40px">
+
+                <h3>Upload queue</h3>
+
+                <p>Queue length: [[ uploader.queue.length ]]</p>
+
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th width="50%">Name</th>
+                        <th ng-show="uploader.isHTML5">Size</th>
+                        <th ng-show="uploader.isHTML5">Progress</th>
+                        <th>Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="item in uploader.queue">
+                        <td><strong>[[ item.file.name ]]</strong>
+                            <!--<div ng-thumb="{ file: item.file, width: 100, height: 100 }"></div>-->
+                            <img width="100px" ng-show="item._file.dataUrl" ng-src="[[item._file.dataUrl]]" class="thumb">
+                        </td>
+                        <td ng-show="uploader.isHTML5" nowrap>[[ item.file.size/1024/1024|number:2 ]] MB</td>
+                        <td ng-show="uploader.isHTML5">
+                            <div class="progress" style="margin-bottom: 0;">
+                                <div class="progress-bar" role="progressbar" ng-style="{ 'width': item.progress + '%' }"></div>
+                            </div>
+                        </td>
+                        <td class="text-center">
+                            <span ng-show="item.isSuccess"><i class="glyphicon glyphicon-ok"></i></span>
+                            <span ng-show="item.isCancel"><i class="glyphicon glyphicon-ban-circle"></i></span>
+                            <span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>
+                        </td>
+                        <td nowrap>
+                            <button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">
+                                <span class="glyphicon glyphicon-upload"></span> Upload
+                            </button>
+                            <button type="button" class="btn btn-warning btn-xs" ng-click="item.cancel()" ng-disabled="!item.isUploading">
+                                <span class="glyphicon glyphicon-ban-circle"></span> Cancel
+                            </button>
+                            <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
+                                <span class="glyphicon glyphicon-trash"></span> Remove
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+                <div>
+                    <div>
+                        Queue progress:
+                        <div class="progress" style="">
+                            <div class="progress-bar" role="progressbar" ng-style="{ 'width': uploader.progress + '%' }"></div>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-success btn-s" ng-click="uploader.uploadAll()" ng-disabled="!uploader.getNotUploadedItems().length">
+                        <span class="glyphicon glyphicon-upload"></span> Upload all
+                    </button>
+                    <button type="button" class="btn btn-warning btn-s" ng-click="uploader.cancelAll()" ng-disabled="!uploader.isUploading">
+                        <span class="glyphicon glyphicon-ban-circle"></span> Cancel all
+                    </button>
+                    <button type="button" class="btn btn-danger btn-s" ng-click="uploader.clearQueue()" ng-disabled="!uploader.queue.length">
+                        <span class="glyphicon glyphicon-trash"></span> Remove all
+                    </button>
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <ul ng-show="files.length > 0" class="response">
+            <li class="sel-file" ng-repeat="f in files">
+                <!-- <img ng-show="f.dataUrl" ng-src="[[f.dataUrl]]" class="thumb">-->
+                    <span class="progress" ng-show="f.progress >= 0">
+                        <div style="width:[[f.progress]]%">[[f.progress]]%</div>
+                    </span>
+                <button class="button" ng-click="f.upload.abort()" ng-show="f.upload != null && f.progress < 100">
+                    Abort
+                </button>
+                [[f.name]] - size: [[f.size]]B - type: [[f.type]]
+                <a ng-show="f.result" href="javascript:void(0)" ng-click="f.showDetail = !f.showDetail">details</a>
+
+                <div ng-show="f.showDetail">
+                    <br/>
+
+                    <div data-ng-show="f.result.result == null">[[f.result]]</div>
+                    <ul>
+                        <li ng-repeat="item in f.result.result">
+                            <div data-ng-show="item.name">file name: [[item.name]]</div>
+                            <div data-ng-show="item.fieldName">name: [[item.fieldName]]</div>
+                            <div data-ng-show="item.size">size on the serve: [[item.size]]</div>
+                            <div data-ng-show="item.value">value: [[item.value]]</div>
+                        </li>
+                    </ul>
+                    <div data-ng-show="f.result.requestHeaders" class="reqh">request headers:
+                        [[f.result.requestHeaders]]
+                    </div>
+                </div>
+            </li>
+        </ul>
+
+{##}
+{#        <pre>[[ files | json]]</pre>#}
+{#        <pre>[[ items | json]]</pre>#}
+
+    </div>
+    {% endangular %}
+{#</script>#}

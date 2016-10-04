@@ -1,0 +1,62 @@
+{% load i18n future staticfiles compress djangular_tags sekizai_tags cms_tags%}
+<!DOCTYPE html>
+<html ng-app='{% block ng_app_name %}seipetali-app{% endblock %}'>
+<head>
+    <title> {% block title %} 6 petali {% endblock %}</title>
+
+    {% block head_css %}
+        {% include 'layout/_common_head_css.html' %}
+    {% endblock %}
+
+
+{#    css from css#}
+    {% render_block "css" %}
+
+
+    {% compress js %}
+        {% block compress_header_js %}
+        {% endblock %}
+    {% endcompress %}
+
+
+
+
+    {% block ng_templates %}
+    {% endblock %}
+
+
+</head>
+<body>
+
+{% include 'layout/_navbar.html' %}
+
+
+<div class="container">
+
+    {% cms_toolbar %}
+
+    {% block content %}
+
+    {% endblock %}
+</div>
+
+
+ {% compress js %}
+     {% block compress_footer_js %}
+         {% include 'layout/_common_footer_js.html' %}
+     {% endblock %}
+{% endcompress %}
+
+{#     js from css#}
+     {% render_block "js" %}
+
+{% block footer_js %}
+
+
+
+{% endblock %}
+
+
+
+</body>
+</html>

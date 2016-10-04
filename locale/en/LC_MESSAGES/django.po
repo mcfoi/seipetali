@@ -1,0 +1,385 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-05-20 08:07+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: alloggio/forms.py:37
+msgid "Chek-in "
+msgstr ""
+
+#: alloggio/forms.py:38
+msgid "Chek-out "
+msgstr ""
+
+#: alloggio/forms.py:39
+msgid "Numero di ospiti "
+msgstr ""
+
+#: common/cms_toolbar.py:36
+msgid "Sites"
+msgstr ""
+
+#: common/cms_toolbar.py:37
+msgid "Admin Sites"
+msgstr ""
+
+#: common/cms_toolbar.py:48
+msgid "User settings"
+msgstr ""
+
+#: notification/models.py:25
+msgid "label"
+msgstr ""
+
+#: notification/models.py:26
+msgid "display"
+msgstr ""
+
+#: notification/models.py:27
+msgid "description"
+msgstr ""
+
+#: notification/models.py:30
+msgid "default"
+msgstr ""
+
+#: notification/models.py:36 notification/models.py:85
+msgid "notice type"
+msgstr ""
+
+#: notification/models.py:37
+msgid "notice types"
+msgstr ""
+
+#: notification/models.py:84
+msgid "user"
+msgstr ""
+
+#: notification/models.py:86
+msgid "medium"
+msgstr ""
+
+#: notification/models.py:87
+msgid "send"
+msgstr ""
+
+#: notification/models.py:90
+msgid "notice setting"
+msgstr ""
+
+#: notification/models.py:91
+msgid "notice settings"
+msgstr ""
+
+#: reservation/models.py:69
+msgid "Pending"
+msgstr ""
+
+#: reservation/models.py:70
+msgid "Reserved"
+msgstr ""
+
+#: reservation/models.py:214
+msgid "Bonifico Bancario"
+msgstr ""
+
+#: reservation/models.py:215
+msgid "Vaglia Postale"
+msgstr ""
+
+#: reservation/models.py:216
+msgid "Paypal"
+msgstr ""
+
+#: seipetali/settings.py:136
+msgid "Italian"
+msgstr ""
+
+#: seipetali/settings.py:137
+msgid "English"
+msgstr ""
+
+#: templates/account/login.html:8 templates/account/login.html.py:22
+#: templates/account/login.html:53
+msgid "Sign In"
+msgstr ""
+
+#: templates/account/login.html:25
+#, python-format
+msgid ""
+"Please sign in with one\n"
+"                    of your existing third party accounts. Or, <a href="
+"\"%(signup_url)s\">sign up</a>\n"
+"                    for a %(site_name)s account and sign in below:"
+msgstr ""
+
+#: templates/account/login.html:35
+msgid "or"
+msgstr ""
+
+#: templates/account/login.html:42
+#, python-format
+msgid ""
+"If you have not created an account yet, then please\n"
+"                    <a href=\"%(signup_url)s\">sign up</a> first."
+msgstr ""
+
+#: templates/account/login.html:52
+msgid "Forgot Password?"
+msgstr ""
+
+#: templates/account/password_reset.html:8
+#: templates/account/password_reset.html:13
+#: templates/account/password_reset_done.html:6
+#: templates/account/password_reset_done.html:11
+msgid "Password Reset"
+msgstr ""
+
+#: templates/account/password_reset.html:18
+msgid ""
+"Forgotten your password? Enter your e-mail address below, and we'll send you "
+"an e-mail allowing you to reset it."
+msgstr ""
+
+#: templates/account/password_reset.html:23
+msgid "Reset My Password"
+msgstr ""
+
+#: templates/account/password_reset.html:26
+msgid "Please contact us if you have any trouble resetting your password."
+msgstr ""
+
+#: templates/account/password_reset_done.html:17
+msgid ""
+"We have sent you an e-mail. Please contact us if you do not receive it "
+"within a few minutes."
+msgstr ""
+
+#: templates/account/signup.html:7 templates/socialaccount/signup.html:8
+msgid "Signup"
+msgstr ""
+
+#: templates/account/signup.html:21 templates/account/signup.html.py:31
+#: templates/socialaccount/signup.html:11
+#: templates/socialaccount/signup.html:22
+msgid "Sign Up"
+msgstr ""
+
+#: templates/account/signup.html:23
+#, python-format
+msgid ""
+"Already have an account? Then please <a href=\"%(login_url)s\">sign in</a>."
+msgstr ""
+
+#: templates/alloggio/detail.html:144
+msgid "Informazioni alloggio"
+msgstr ""
+
+#: templates/alloggio/detail.html:158
+msgid "Servizi inclusi"
+msgstr ""
+
+#: templates/alloggio/detail.html:169
+msgid "Tipologia letto"
+msgstr ""
+
+#: templates/alloggio/detail.html:172
+msgid "Posti letto"
+msgstr ""
+
+#: templates/alloggio/detail.html:294
+msgid "Regole della casa"
+msgstr ""
+
+#: templates/alloggio/search_start.html:16
+msgid "Cerca il tuo alloggio"
+msgstr ""
+
+#: templates/alloggio/search_start.html:35
+msgid "Cerca"
+msgstr ""
+
+#: templates/alloggio/search_start.html:40
+msgid "Al momento nessun alloggio disponibile"
+msgstr ""
+
+#: templates/layout/_navbar.html:26
+msgid "i Sei Petali Card"
+msgstr ""
+
+#: templates/layout/_navbar.html:35
+msgid "Vuoi affittare il <br> tuo appartamento?"
+msgstr ""
+
+#: templates/layout/_navbar.html:36
+msgid "Cerchi un appartamento<br>A Milano?"
+msgstr ""
+
+#: templates/layout/_navbar.html:38
+msgid "News"
+msgstr ""
+
+#: templates/layout/_navbar.html:45
+msgid "registrati"
+msgstr "Sign up"
+
+#: templates/layout/_navbar.html:138
+msgid "Benvenuto"
+msgstr "Welcome"
+
+#: templates/layout/_navbar.html:147
+msgid "Pannello Call Center"
+msgstr "Call Center Panel   "
+
+#: templates/layout/_navbar.html:150
+msgid "Esci"
+msgstr "Logout"
+
+#: templates/layout/_navbar.html:156
+msgid "accedi"
+msgstr "login"
+
+#: templates/layout/base.html:80
+msgid "Chi siamo"
+msgstr "About us"
+
+#: templates/layout/base.html:87
+msgid "Termini e condizioni"
+msgstr "Terms & Conditions"
+
+#: templates/layout/base.html:90
+msgid "Privacy & Policy"
+msgstr ""
+
+#: templates/menu/language_chooser.html:7
+msgid "Change to language:"
+msgstr ""
+
+#: templates/ng-template/alloggio-search/angular-alloggio-search.html:9
+msgid "Cerca una sistemazione temporanea a Milano"
+msgstr ""
+
+#: templates/ng-template/alloggio-search/angular-alloggio-search.html:17
+msgid "Check-In"
+msgstr ""
+
+#: templates/ng-template/alloggio-search/angular-alloggio-search.html:30
+msgid "Check-Out"
+msgstr ""
+
+#: templates/ng-template/alloggio-search/angular-alloggio-search.html:43
+msgid "Numero di ospiti"
+msgstr ""
+
+#: templates/ng-template/alloggio-search/angular-alloggio-search.html:65
+msgid "Nessun risultato"
+msgstr ""
+
+#: templates/notification/email_body.html:52
+msgid ""
+"\n"
+"                                                    Cooperativa sociale\n"
+"                                                "
+msgstr ""
+
+#: templates/notification/email_body.txt:1
+#, python-format
+msgid ""
+"You have received the following notice from %(current_site)s:\n"
+"\n"
+"\n"
+"\n"
+"\n"
+"To see other notices or change how you receive notifications, please go to "
+"%(default_http_protocol)s://%(current_site)s%(notices_url)s\n"
+msgstr ""
+
+#: templates/notification/email_subject.txt:1
+#, python-format
+msgid "[%(current_site)s] %(message)s"
+msgstr ""
+
+#: templates/notification/full.txt:1
+#, python-format
+msgid "%(notice)s"
+msgstr ""
+
+#: templates/notification/short.html:1
+#, python-format
+msgid "%(notice)s in HTML"
+msgstr ""
+
+#: templates/reservation/detail.html:16
+msgid "Check-in"
+msgstr ""
+
+#: templates/reservation/detail.html:25
+msgid "Check-out"
+msgstr ""
+
+#: templates/reservation/detail.html:34
+msgid "Prenotazione"
+msgstr ""
+
+#: templates/socialaccount/signup.html:13
+#, python-format
+msgid ""
+"You are about to use your %(provider_name)s account to login to\n"
+"%(site_name)s. As a final step, please complete the following form:"
+msgstr ""
+
+#: user/forms.py:20
+msgid "Accetta i termini e le condizioni di servizio"
+msgstr ""
+
+#: user/forms.py:22
+msgid "E' necessario accettare i termini e le condizioni di servizio"
+msgstr ""
+
+#: user/forms.py:30
+msgid "Nome"
+msgstr ""
+
+#: user/forms.py:32
+msgid "Cognome"
+msgstr ""
+
+#: user/forms.py:34
+msgid "+39 02 9876543"
+msgstr ""
+
+#: user/forms.py:36 user/models.py:30
+msgid "Indirizzo"
+msgstr ""
+
+#: user/forms.py:37 user/models.py:31
+msgid "Cittá"
+msgstr ""
+
+#: user/forms.py:38 user/models.py:32
+msgid "Provincia"
+msgstr ""
+
+#: user/forms.py:39 user/models.py:33
+msgid "Codice postale"
+msgstr ""
+
+#~ msgid "Aiuto"
+#~ msgstr "Help"
+
+#~ msgid "Informativa sulla privacy"
+#~ msgstr "Privacy policy"

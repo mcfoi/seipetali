@@ -1,0 +1,37 @@
+.breackfast, .money, .bed, .ico_Screen_Shot_2015-04-21_at_11 {
+  display: inline-block;
+  background-image: url(spritebox-sprite.png);
+  background-repeat: no-repeat
+}
+
+.breackfast {
+  background-position: -16px -12px;
+  height: 100px;
+  width: 100px
+}
+
+.money {
+  background-position: -160px -12px;
+  height: 100px;
+  width: 100px
+}
+
+.bed {
+  background-position: -304px -12px;
+  height: 100px;
+  width: 100px
+}
+
+.ico_Screen_Shot_2015-04-21_at_11 {
+  background-position: -1581px -0px;
+  height: 770px;
+  width: 1581px
+}
+
+
+.icon_half {
+    transform: scale(0.5, 0.5);
+    -ms-transform: scale(0.5, 0.5);
+    -webkit-transform: scale(0.5, 0.5);
+      margin-right: -50px;
+}

@@ -1,0 +1,5 @@
+<form action="{% url django.contrib.auth.views.login %}" method="post">
+  {% csrf_token %}
+  {{ form.as_ul }}
+  <input type="submit" id="login-submit" value="Login" />
+</form>
